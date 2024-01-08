@@ -1,15 +1,17 @@
 # zenify
 
-A new Flutter project.
+Welcome to our Multivendor App – an open-source project in progress. This platform is designed for diverse vendors to easily manage their products/services in a unified digital space. Join us in shaping the future of e-commerce by contributing to this collaborative effort. Let's build something amazing together!.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for my Flutter Journey.
 
-A few resources to get you started if this is your first Flutter project:
+Links to get connected with me:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Instagram](https://www.instagram.com/imhi786/)
+- [Linkedin](https://www.linkedin.com/in/huzaifa-qureshi-275b4b277/)
+- [Twitter](https://twitter.com/Huzaifa13035835)
+
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
