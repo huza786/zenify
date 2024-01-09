@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zenify/providers/background_nav_bar_provider.dart';
+import 'package:zenify/screens/AuthenticationScreens/providers/background_nav_bar_provider.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
 class MainPage extends StatefulWidget {

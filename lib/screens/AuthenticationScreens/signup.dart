@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zenify/screens/Components/email_text_field.dart';
-import 'package:zenify/screens/Components/head_text_widget.dart';
-import 'package:zenify/screens/Components/helper_link.dart';
-import 'package:zenify/screens/Components/icon_button_login_signup.dart';
-import 'package:zenify/screens/Components/input_text_field.dart';
-import 'package:zenify/screens/Components/login_signup_button.dart';
+import 'package:zenify/screens/AuthenticationScreens/components/email_text_field.dart';
+import 'package:zenify/screens/AuthenticationScreens/components/head_text_widget.dart';
+import 'package:zenify/screens/AuthenticationScreens/components/helper_link.dart';
+import 'package:zenify/screens/AuthenticationScreens/components/icon_button_login_signup.dart';
+import 'package:zenify/screens/AuthenticationScreens/components/input_text_field.dart';
+import 'package:zenify/screens/AuthenticationScreens/components/login_signup_button.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
 class SignUp extends StatefulWidget {

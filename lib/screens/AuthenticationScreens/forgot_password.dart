@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zenify/screens/Components/email_text_field.dart';
-import 'package:zenify/screens/Components/head_text_widget.dart';
-import 'package:zenify/screens/Components/login_signup_button.dart';
+import 'package:zenify/screens/AuthenticationScreens/components/email_text_field.dart';
+import 'package:zenify/screens/AuthenticationScreens/components/head_text_widget.dart';
+import 'package:zenify/screens/AuthenticationScreens/components/login_signup_button.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
