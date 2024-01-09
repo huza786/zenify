@@ -6,10 +6,10 @@ import 'package:zenify/utils/globalvariable.dart';
 
 class EmailTextField extends StatefulWidget {
   final TextEditingController controller;
-  final String? hintText;
-  final String? labelText;
+  String hintText = 'Email';
+  String labelText = 'Email';
 
-  const EmailTextField({
+  EmailTextField({
     Key? key,
     required this.controller,
     required this.hintText,
@@ -27,6 +27,7 @@ class _EmailTextFieldState extends State<EmailTextField> {
         Provider.of<EmailState>(context).emailValidationState;
 
     Widget suffixIcon = _getSuffixIcon(emailValidationState);
+    Widget errorText = _getErrorText(emailValidationState);
 
     return Column(
       children: [
@@ -75,16 +76,7 @@ class _EmailTextFieldState extends State<EmailTextField> {
             ),
           ),
         ),
-        Visibility(
-          visible: emailValidationState == EmailValidationState.Invalid,
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(10.h, 0, 0, 10.h),
-            child: Text(
-              "Not a valid email address. Should be 'your@email.com'",
-              style: TextStyle(color: Color.fromARGB(255, 251, 20, 3)),
-            ),
-          ),
-        ),
+        errorText,
       ],
     );
   }
@@ -107,7 +99,27 @@ class _EmailTextFieldState extends State<EmailTextField> {
       case EmailValidationState.Invalid:
         return const Icon(Icons.close);
       case EmailValidationState.None:
-        return Container(); // Return an empty Container for EmailValidationState.None
+        return SizedBox(
+          width: 0,
+          height: 0,
+        ); // Return an empty Container for EmailValidationState.None
+    }
+  }
+
+  Widget _getErrorText(EmailValidationState state) {
+    if (state == EmailValidationState.Invalid) {
+      return Padding(
+        padding: EdgeInsets.fromLTRB(10.h, 0, 0, 10.h),
+        child: Text(
+          "Not a valid email address. Should be 'your@email.com'",
+          style: TextStyle(color: Color.fromARGB(255, 251, 20, 3)),
+        ),
+      );
+    } else {
+      return SizedBox(
+        width: 0,
+        height: 0,
+      ); // Return an empty Container for other states
     }
   }
 }

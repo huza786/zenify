@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
 class HomeTwo extends StatefulWidget {
@@ -28,7 +29,9 @@ class _HomeTwoState extends State<HomeTwo> {
             children: [
               //main poster=> new collection
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.login);
+                },
                 child: Stack(
                   alignment: Alignment.topCenter,
                   children: [
