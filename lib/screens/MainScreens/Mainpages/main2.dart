@@ -18,8 +18,8 @@ class _HomeTwoState extends State<HomeTwo> {
           forceMaterialTransparency: true,
           leading: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back_ios_new)),
-          iconTheme: IconThemeData(color: Colors.black),
+              icon: const Icon(Icons.arrow_back_ios_new)),
+          iconTheme: const IconThemeData(color: Colors.black),
           elevation: 0,
           backgroundColor: Colors.transparent,
         ),

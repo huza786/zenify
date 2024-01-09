@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 
-//TODO: create such email validation that when text field is empty no icons are showed
+enum EmailValidationState { Valid, Invalid, None }
+
 class EmailState with ChangeNotifier {
-  bool _isValidEmail = false;
-  bool get isValidEmail => _isValidEmail;
+  EmailValidationState _emailValidationState = EmailValidationState.None;
+
+  EmailValidationState get emailValidationState => _emailValidationState;
+
   void emailValidation(String email) {
-    // Regular expression for a simple email validation
-    // You may want to use a more robust email validation regex
     if (email.isNotEmpty) {
       final RegExp emailRegex = RegExp(
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
       );
-      _isValidEmail = emailRegex.hasMatch(email);
-      notifyListeners();
+      _emailValidationState = emailRegex.hasMatch(email)
+          ? EmailValidationState.Valid
+          : EmailValidationState.Invalid;
+    } else {
+      _emailValidationState = EmailValidationState.None;
     }
+
+    notifyListeners();
   }
 }

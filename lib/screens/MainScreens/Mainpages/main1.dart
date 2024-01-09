@@ -50,7 +50,7 @@ class _HomeOneState extends State<HomeOne> {
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.red))),
+                                    side: const BorderSide(color: Colors.red))),
                         backgroundColor:
                             MaterialStateProperty.all<Color>(primaryRed)),
                     child: Text(
@@ -91,7 +91,7 @@ class _HomeOneState extends State<HomeOne> {
                       child: Text(
                         """You've never seen it before!""",
                         style: headerStyle.copyWith(
-                            fontSize: 11, color: Color(0xff9B9B9B)),
+                            fontSize: 11, color: const Color(0xff9B9B9B)),
                       ),
                     ),
                   ],

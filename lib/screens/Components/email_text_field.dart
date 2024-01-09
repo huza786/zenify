@@ -17,13 +17,17 @@ class EmailTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _EmailTextFieldState createState() => _EmailTextFieldState();
 }
 
 class _EmailTextFieldState extends State<EmailTextField> {
   @override
   Widget build(BuildContext context) {
+    EmailValidationState emailValidationState =
+        Provider.of<EmailState>(context).emailValidationState;
+
+    Widget suffixIcon = _getSuffixIcon(emailValidationState);
+
     return Column(
       children: [
         Padding(
@@ -39,9 +43,7 @@ class _EmailTextFieldState extends State<EmailTextField> {
                 )
               ],
               border: Border.all(
-                color: Provider.of<EmailState>(context).isValidEmail
-                    ? Colors.green
-                    : Colors.transparent,
+                color: _getBorderColor(emailValidationState),
                 width: 2.0,
               ),
             ),
@@ -56,9 +58,7 @@ class _EmailTextFieldState extends State<EmailTextField> {
                       .emailValidation(value);
                 },
                 decoration: InputDecoration(
-                  suffixIcon: Provider.of<EmailState>(context).isValidEmail
-                      ? const Icon(Icons.check)
-                      : const Icon(Icons.close),
+                  suffixIcon: suffixIcon,
                   hintText: widget.hintText,
                   hintStyle: headerStyle,
                   labelText: widget.labelText,
@@ -66,7 +66,7 @@ class _EmailTextFieldState extends State<EmailTextField> {
                   border: InputBorder.none,
                 ),
                 validator: (value) {
-                  if (!Provider.of<EmailState>(context).isValidEmail) {
+                  if (emailValidationState == EmailValidationState.Invalid) {
                     return 'Please enter a valid email address';
                   }
                   return null;
@@ -76,16 +76,38 @@ class _EmailTextFieldState extends State<EmailTextField> {
           ),
         ),
         Visibility(
-          visible: !Provider.of<EmailState>(context).isValidEmail,
+          visible: emailValidationState == EmailValidationState.Invalid,
           child: Padding(
             padding: EdgeInsets.fromLTRB(10.h, 0, 0, 10.h),
-            child: const Text(
-              """Not a valid email address.Should be 'your@email.com'""",
+            child: Text(
+              "Not a valid email address. Should be 'your@email.com'",
               style: TextStyle(color: Color.fromARGB(255, 251, 20, 3)),
             ),
           ),
         ),
       ],
     );
+  }
+
+  Color _getBorderColor(EmailValidationState state) {
+    switch (state) {
+      case EmailValidationState.Valid:
+        return Colors.green;
+      case EmailValidationState.Invalid:
+        return Colors.red;
+      case EmailValidationState.None:
+        return Colors.transparent;
+    }
+  }
+
+  Widget _getSuffixIcon(EmailValidationState state) {
+    switch (state) {
+      case EmailValidationState.Valid:
+        return const Icon(Icons.check);
+      case EmailValidationState.Invalid:
+        return const Icon(Icons.close);
+      case EmailValidationState.None:
+        return Container(); // Return an empty Container for EmailValidationState.None
+    }
   }
 }
