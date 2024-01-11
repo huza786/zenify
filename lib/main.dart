@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:zenify/screens/AuthenticationScreens/providers/background_nav_bar_provider.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card_providers.dart';
+import 'package:zenify/screens/DashboardScreens/provider/nav_bar_provider.dart';
 import 'package:zenify/screens/AuthenticationScreens/providers/email_validation_provider.dart';
 import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
@@ -25,11 +26,14 @@ class MyApp extends StatelessWidget {
           //navbar provider
           ChangeNotifierProvider(
             create: (context) => NavBarState(),
-          )
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ProductCardState(),
+          ),
         ],
         child: MaterialApp(
           theme: ThemeData(
-              scaffoldBackgroundColor: backgroundColor, useMaterial3: false),
+              scaffoldBackgroundColor: backgroundColor, useMaterial3: true),
           debugShowCheckedModeBanner: false,
           initialRoute: AppRoutes.initialRoute,
           routes: routes,

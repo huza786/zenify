@@ -24,3 +24,5 @@ Widget phoneIcon = SvgPicture.asset(
   phone,
   semanticsLabel: 'arrow',
 );
+const String assetImagesDirectry = 'assets/images/';
+const String blackProduct = '${assetImagesDirectry}black_product.png';

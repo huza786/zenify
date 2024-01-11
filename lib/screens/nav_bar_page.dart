@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zenify/screens/AuthenticationScreens/providers/background_nav_bar_provider.dart';
+import 'package:zenify/screens/DashboardScreens/provider/nav_bar_provider.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class NavBarPage extends StatefulWidget {
+  const NavBarPage({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<NavBarPage> createState() => _MainNavBarState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainNavBarState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     NavBarState navBarState = Provider.of<NavBarState>(context);

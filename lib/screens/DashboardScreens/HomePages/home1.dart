@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card_providers.dart';
 import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
@@ -110,6 +113,27 @@ class _HomeOneState extends State<HomeOne> {
               ],
             ),
           ),
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: 260.w,
+                  child: ListView.builder(
+                      itemCount: 4,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) =>
+                          ProductCard(
+                            title: 'T-Shirt Sailing',
+                            subTitle: 'Mango Boy',
+                            orignalPrice: 39.99,
+                            salePrice: 19.99,
+                            favoriteOrNot: false,
+                            newOrNot: false,
+                          )),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     ));

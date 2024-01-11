@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zenify/screens/MainScreens/Mainpages/main1.dart';
-import 'package:zenify/screens/MainScreens/favorites_page.dart';
-import 'package:zenify/screens/MainScreens/Mainpages/main2.dart';
-import 'package:zenify/screens/MainScreens/profile_page.dart';
-import 'package:zenify/screens/MainScreens/shop_page.dart';
-import 'package:zenify/screens/MainScreens/shopping_cart_page.dart';
-import 'package:zenify/screens/home_page.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/home1.dart';
+import 'package:zenify/screens/DashboardScreens/favorites_page.dart';
+import 'package:zenify/screens/DashboardScreens/profile_page.dart';
+import 'package:zenify/screens/DashboardScreens/shop_page.dart';
+import 'package:zenify/screens/DashboardScreens/shopping_cart_page.dart';
 
 class NavBarState with ChangeNotifier {
   var homeIndex = 0;

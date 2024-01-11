@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-enum EmailValidationState { Valid, Invalid, None }
+enum EmailValidationState { valid, invalid, none }
 
 class EmailState with ChangeNotifier {
-  EmailValidationState _emailValidationState = EmailValidationState.None;
+  EmailValidationState _emailValidationState = EmailValidationState.none;
 
   EmailValidationState get emailValidationState => _emailValidationState;
 
@@ -13,10 +13,10 @@ class EmailState with ChangeNotifier {
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
       );
       _emailValidationState = emailRegex.hasMatch(email)
-          ? EmailValidationState.Valid
-          : EmailValidationState.Invalid;
+          ? EmailValidationState.valid
+          : EmailValidationState.invalid;
     } else {
-      _emailValidationState = EmailValidationState.None;
+      _emailValidationState = EmailValidationState.none;
     }
 
     notifyListeners();

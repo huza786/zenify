@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:zenify/providers/email_validation_provider.dart';
+import 'package:zenify/screens/AuthenticationScreens/providers/email_validation_provider.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
 class EmailTextField extends StatefulWidget {
@@ -67,7 +67,7 @@ class _EmailTextFieldState extends State<EmailTextField> {
                   border: InputBorder.none,
                 ),
                 validator: (value) {
-                  if (emailValidationState == EmailValidationState.Invalid) {
+                  if (emailValidationState == EmailValidationState.invalid) {
                     return 'Please enter a valid email address';
                   }
                   return null;
@@ -83,23 +83,23 @@ class _EmailTextFieldState extends State<EmailTextField> {
 
   Color _getBorderColor(EmailValidationState state) {
     switch (state) {
-      case EmailValidationState.Valid:
+      case EmailValidationState.valid:
         return Colors.green;
-      case EmailValidationState.Invalid:
+      case EmailValidationState.invalid:
         return Colors.red;
-      case EmailValidationState.None:
+      case EmailValidationState.none:
         return Colors.transparent;
     }
   }
 
   Widget _getSuffixIcon(EmailValidationState state) {
     switch (state) {
-      case EmailValidationState.Valid:
+      case EmailValidationState.valid:
         return const Icon(Icons.check);
-      case EmailValidationState.Invalid:
+      case EmailValidationState.invalid:
         return const Icon(Icons.close);
-      case EmailValidationState.None:
-        return SizedBox(
+      case EmailValidationState.none:
+        return const SizedBox(
           width: 0,
           height: 0,
         ); // Return an empty Container for EmailValidationState.None
@@ -107,16 +107,16 @@ class _EmailTextFieldState extends State<EmailTextField> {
   }
 
   Widget _getErrorText(EmailValidationState state) {
-    if (state == EmailValidationState.Invalid) {
+    if (state == EmailValidationState.invalid) {
       return Padding(
         padding: EdgeInsets.fromLTRB(10.h, 0, 0, 10.h),
-        child: Text(
+        child: const Text(
           "Not a valid email address. Should be 'your@email.com'",
           style: TextStyle(color: Color.fromARGB(255, 251, 20, 3)),
         ),
       );
     } else {
-      return SizedBox(
+      return const SizedBox(
         width: 0,
         height: 0,
       ); // Return an empty Container for other states

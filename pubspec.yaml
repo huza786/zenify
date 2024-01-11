@@ -40,6 +40,7 @@ dependencies:
   flutter_screenutil: ^5.9.0
   flutter_svg: ^2.0.9
   provider: ^6.1.1
+  flutter_rating_bar: ^4.0.1
   # icon_decoration: ^2.0.2
 flutter_native_splash:
   color: "#f5f7f5" #white color
@@ -92,6 +93,8 @@ flutter:
         - asset: assets/fonts/Metropolis-ExtraBold.otf
         - asset: assets/fonts/Metropolis-Black.otf
         - asset: assets/fonts/Metropolis-BlackItalic.otf
+        - asset: assets/fonts/Metropolis-SemiBold.otf
+
 
         
 

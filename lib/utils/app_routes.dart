@@ -1,9 +1,9 @@
 import 'package:zenify/screens/AuthenticationScreens/forgot_password.dart';
 import 'package:zenify/screens/AuthenticationScreens/login.dart';
 import 'package:zenify/screens/AuthenticationScreens/signup.dart';
-import 'package:zenify/screens/MainScreens/Mainpages/main1.dart';
-import 'package:zenify/screens/MainScreens/Mainpages/main2.dart';
-import 'package:zenify/screens/home_page.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/home1.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/home2.dart';
+import 'package:zenify/screens/nav_bar_page.dart';
 
 class AppRoutes {
   static const initialRoute = '/';
