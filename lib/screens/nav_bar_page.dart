@@ -15,10 +15,12 @@ class _MainNavBarState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     NavBarState navBarState = Provider.of<NavBarState>(context);
     return Scaffold(
+      extendBody: true,
       body: navBarState.screens[navBarState.selectedPage],
       backgroundColor: backgroundColor,
       bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(12)),
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(27), topRight: Radius.circular(27)),
         child: BottomNavigationBar(
           elevation: 5,
           type: BottomNavigationBarType.fixed,

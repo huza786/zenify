@@ -3,10 +3,25 @@ import 'package:flutter/material.dart';
 class ProductCardState with ChangeNotifier {
   bool _favoriteOrNot = false;
   double _rating = 0;
+
   double get rating => _rating;
-  get favoriteOrNot => _favoriteOrNot;
+  bool get favoriteOrNot => _favoriteOrNot;
+
+  set favoriteOrNot(bool value) {
+    _favoriteOrNot = value;
+    print('_favoriteOrNot:${_favoriteOrNot}');
+
+    notifyListeners();
+  }
+
+  set rating(double value) {
+    _rating = value;
+    notifyListeners();
+  }
+
   void favoriteFunction() {
-    _favoriteOrNot = !_favoriteOrNot;
+    print('_favoriteOrNot:${_favoriteOrNot}');
+    _favoriteOrNot = !favoriteOrNot;
     notifyListeners();
   }
 

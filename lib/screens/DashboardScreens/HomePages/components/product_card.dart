@@ -12,16 +12,19 @@ class ProductCard extends StatefulWidget {
   String subTitle = '';
   double orignalPrice;
   double? salePrice;
+  String productImage;
+  double initRating = 0;
 
-  ProductCard({
-    super.key,
-    required this.newOrNot,
-    required this.favoriteOrNot,
-    required this.orignalPrice,
-    required this.title,
-    required this.subTitle,
-    this.salePrice,
-  });
+  ProductCard(
+      {super.key,
+      required this.newOrNot,
+      required this.favoriteOrNot,
+      required this.orignalPrice,
+      required this.title,
+      required this.subTitle,
+      this.salePrice,
+      required this.productImage,
+      required this.initRating});
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -29,18 +32,30 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      ProductCardState productCardState =
+          Provider.of<ProductCardState>(context);
+      productCardState.favoriteOrNot = widget.favoriteOrNot;
+      productCardState.rating = widget.initRating;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     double? salePercentage = widget.salePrice! / widget.orignalPrice * 100;
 
     return Consumer<ProductCardState>(
       builder: (context, productCardState, _) => Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         child: ClipRRect(
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(14), topRight: Radius.circular(14)),
-          child: Container(
+          child: SizedBox(
             // decoration: BoxDecoration(color: Colors.transparent),
-            height: 260.h,
+            height: 320.h,
             width: 150.w,
             child: Stack(
               children: [
@@ -49,7 +64,7 @@ class _ProductCardState extends State<ProductCard> {
                   child: Image.asset(
                     height: 184.h,
                     width: 148.w,
-                    blackProduct,
+                    widget.productImage,
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -81,7 +96,7 @@ class _ProductCardState extends State<ProductCard> {
                               borderRadius: BorderRadius.circular(29)),
                           child: Center(
                             child: Text(
-                              "-${salePercentage.roundToDouble().toString()}%",
+                              "-${salePercentage.roundToDouble().toInt().toString()}%",
                               style: headerStyle.copyWith(
                                   fontSize: 11,
                                   color: Colors.white,
@@ -122,32 +137,18 @@ class _ProductCardState extends State<ProductCard> {
                     width: 125.w,
                     child: Row(
                       children: [
-                        RatingBar(
-                          itemSize: 20,
-                          ratingWidget: RatingWidget(
-                            full: const Icon(
-                              Icons.star_rounded,
-                              color: Colors.amber,
-                              size: 4,
-                            ),
-                            half: const Icon(
-                              Icons.star_half,
-                              color: Colors.amber,
-                              size: 4,
-                            ),
-                            empty: const Icon(
-                              Icons.star_border_rounded,
-                              color: Colors.grey,
-                              size: 4,
-                            ),
+                        RatingBarIndicator(
+                          itemSize: 16,
+                          rating: productCardState.rating,
+                          itemBuilder: (context, index) => const Icon(
+                            Icons.star_rounded,
+                            color: Colors.amber,
                           ),
-                          onRatingUpdate: (rating) {
-                            productCardState.updateRating(rating);
-                          },
-                        ),
-                        //rating in numbers next to rating
+                          itemCount: 5,
+                          direction: Axis.horizontal,
+                        ), //rating in numbers next to rating
                         Text(
-                          '(${context.read<ProductCardState>().rating.toString()})',
+                          '(${widget.initRating})',
                           style: headerStyle.copyWith(fontSize: 10),
                         ),
                       ],

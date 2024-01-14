@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/home1.dart';
 import 'package:zenify/screens/DashboardScreens/favorites_page.dart';
 import 'package:zenify/screens/DashboardScreens/profile_page.dart';
-import 'package:zenify/screens/DashboardScreens/shop_page.dart';
+import 'package:zenify/screens/DashboardScreens/ShopPage/shop_page.dart';
 import 'package:zenify/screens/DashboardScreens/shopping_cart_page.dart';
 
 class NavBarState with ChangeNotifier {
