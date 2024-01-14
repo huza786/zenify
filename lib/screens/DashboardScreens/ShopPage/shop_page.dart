@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zenify/screens/DashboardScreens/ShopPage/women_shop.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
 class ShopPage extends StatefulWidget {
@@ -20,11 +21,16 @@ class _ShopPageState extends State<ShopPage> {
             systemOverlayStyle: SystemUiOverlayStyle(),
             backgroundColor: Colors.white,
             bottom: TabBar(
+                unselectedLabelStyle: headerStyle.copyWith(
+                  fontSize: 16,
+                ),
+                dividerColor: Colors.white,
                 indicatorColor: primaryRed,
                 indicatorSize: TabBarIndicatorSize.tab,
                 indicatorWeight: 3.h,
-                labelColor: primaryRed,
-                labelStyle: headerStyle.copyWith(fontSize: 16),
+                labelColor: Colors.black,
+                labelStyle: headerStyle.copyWith(
+                    fontSize: 16, fontWeight: FontWeight.w600),
                 tabs: [
                   Tab(
                     text: 'Women',
@@ -45,12 +51,7 @@ class _ShopPageState extends State<ShopPage> {
           ),
           body: TabBarView(
             children: [
-              Center(
-                child: Text(
-                  'Women',
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-                ),
-              ),
+              WomenShopPage(),
               Center(
                 child: Text(
                   'Men',

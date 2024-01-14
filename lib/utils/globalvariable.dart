@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
+import 'package:zenify/screens/DashboardScreens/ShopPage/components/category_model.dart';
 
 TextStyle customTextStyle = GoogleFonts.metrophobic();
 Color primaryRed = const Color(0xFFDB3022);
-Color backgroundColor = const Color.fromARGB(255, 255, 255, 255);
+Color backgroundColor = const Color(0xFFF9F9F9);
 
 Color greyColor = const Color.fromARGB(255, 5, 5, 5);
 
@@ -29,7 +30,36 @@ const String assetImagesDirectry = 'assets/images/';
 const String blackProduct = '${assetImagesDirectry}black_product.png';
 const String smallBanner = '${assetImagesDirectry}small_banner.png';
 const String banner = '${assetImagesDirectry}banner.png';
+const String lnd1 = 'assets/images/lnd1.jpg';
 
+const String lnd2 = 'assets/images/lnd2.jpg';
+
+const String lnd3 = 'assets/images/lnd3.jpg';
+
+const String lnd4 = 'assets/images/lnd4.jpg';
+
+const String lnd5 = 'assets/images/lnd5.jpg';
+
+const String lnd6 = 'assets/images/lnd6.jpg';
+
+const String lnd7 = 'assets/images/lnd7.jpg';
+
+const String lnd8 = 'assets/images/lnd8.jpg';
+const String ptr1 = 'assets/images/ptr1.jpg';
+
+const String ptr2 = 'assets/images/ptr2.jpg';
+
+const String ptr3 = 'assets/images/ptr3.jpg';
+
+const String ptr4 = 'assets/images/ptr4.jpg';
+
+const String ptr5 = 'assets/images/ptr5.jpg';
+List<CategoryModel> categoriesList = [
+  CategoryModel(title: "New", imageAsset: lnd1),
+  CategoryModel(title: "Clothes", imageAsset: lnd2),
+  CategoryModel(title: "Shoes", imageAsset: lnd3),
+  CategoryModel(title: "Accessories", imageAsset: lnd4),
+];
 /* ProductCard(
   title: 'T-Shirt Sailing',
   subTitle: 'Mango Boy',
