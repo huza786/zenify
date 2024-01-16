@@ -18,7 +18,7 @@ class _ShopPageState extends State<ShopPage> {
       length: 3,
       child: Scaffold(
           appBar: AppBar(
-            systemOverlayStyle: SystemUiOverlayStyle(),
+            systemOverlayStyle: const SystemUiOverlayStyle(),
             backgroundColor: Colors.white,
             bottom: TabBar(
                 unselectedLabelStyle: headerStyle.copyWith(
@@ -31,7 +31,7 @@ class _ShopPageState extends State<ShopPage> {
                 labelColor: Colors.black,
                 labelStyle: headerStyle.copyWith(
                     fontSize: 16, fontWeight: FontWeight.w600),
-                tabs: [
+                tabs: const [
                   Tab(
                     text: 'Women',
                   ),
@@ -49,9 +49,9 @@ class _ShopPageState extends State<ShopPage> {
             ),
             centerTitle: true,
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
-              WomenShopPage(),
+              SingleChildScrollView(child: WomenShopPage()),
               Center(
                 child: Text(
                   'Men',

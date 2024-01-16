@@ -63,7 +63,7 @@ class _HomeTwoState extends State<HomeTwo> {
             Column(
               children: [
                 // Summer Sale Block
-                Container(
+                SizedBox(
                   height: 186.h,
                   width: 187.w,
                   child: Center(

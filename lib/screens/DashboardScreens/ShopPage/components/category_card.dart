@@ -12,7 +12,7 @@ class CategoryCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
       child: Card(
-        color: Color(0xffFFFFFF),
+        color: const Color(0xffFFFFFF),
         elevation: 0,
         child: SizedBox(
           height: 100.h,
@@ -20,7 +20,7 @@ class CategoryCard extends StatelessWidget {
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Padding(
-              padding: EdgeInsets.only(left: 23),
+              padding: const EdgeInsets.only(left: 23),
               child: Text(
                 title,
                 style: headerStyle.copyWith(
@@ -30,7 +30,7 @@ class CategoryCard extends StatelessWidget {
               ),
             ),
             ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(8),
                   bottomRight: Radius.circular(8)),
               child: Image.asset(

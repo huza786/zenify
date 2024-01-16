@@ -9,7 +9,6 @@ class ProductCardState with ChangeNotifier {
 
   set favoriteOrNot(bool value) {
     _favoriteOrNot = value;
-    print('_favoriteOrNot:${_favoriteOrNot}');
 
     notifyListeners();
   }
@@ -20,7 +19,6 @@ class ProductCardState with ChangeNotifier {
   }
 
   void favoriteFunction() {
-    print('_favoriteOrNot:${_favoriteOrNot}');
     _favoriteOrNot = !favoriteOrNot;
     notifyListeners();
   }

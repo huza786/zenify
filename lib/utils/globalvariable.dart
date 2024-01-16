@@ -75,7 +75,7 @@ List<Product> productList = [
     subTitle: 'Mango Boy 1',
     originalPrice: 39.99,
     salePrice: 19.99,
-    favoriteOrNot: false,
+    favoriteOrNot: true,
     newOrNot: false,
     initRating: 4.5,
   ),

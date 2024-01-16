@@ -79,28 +79,26 @@ class _LoginState extends State<LogIn> {
                     ],
                   ),
                 ),
-                Container(
-                  child: Center(
-                    child: TextButton(
-                        style: ButtonStyle(
-                          overlayColor: MaterialStateProperty.all(Colors.grey),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/signup');
-                        },
-                        child: Column(
-                          children: [
-                            Text(
-                              """Do not have an account?""",
-                              style: headerStyle.copyWith(color: primaryRed),
-                            ),
-                            Text(
-                              'Sign up',
-                              style: headerStyle.copyWith(color: primaryRed),
-                            ),
-                          ],
-                        )),
-                  ),
+                Center(
+                  child: TextButton(
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.all(Colors.grey),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/signup');
+                      },
+                      child: Column(
+                        children: [
+                          Text(
+                            """Do not have an account?""",
+                            style: headerStyle.copyWith(color: primaryRed),
+                          ),
+                          Text(
+                            'Sign up',
+                            style: headerStyle.copyWith(color: primaryRed),
+                          ),
+                        ],
+                      )),
                 )
               ],
             ),

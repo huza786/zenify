@@ -97,15 +97,11 @@ class _HomeThreeState extends State<HomeThree> {
                       Product currentProduct = productList[index];
                       return Visibility(
                         visible: !currentProduct.newOrNot,
-                        child: ProductCard(
-                          initRating: currentProduct.initRating,
-                          productImage: currentProduct.productImage,
-                          title: currentProduct.title,
-                          subTitle: currentProduct.subTitle,
-                          orignalPrice: currentProduct.originalPrice,
-                          salePrice: currentProduct.salePrice,
-                          favoriteOrNot: currentProduct.favoriteOrNot,
-                          newOrNot: currentProduct.newOrNot,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: ProductCard(
+                            product: currentProduct,
+                          ),
                         ),
                       );
                     }),
@@ -173,15 +169,11 @@ class _HomeThreeState extends State<HomeThree> {
                       Product currentProduct = productList[index];
                       return Visibility(
                         visible: currentProduct.newOrNot,
-                        child: ProductCard(
-                          initRating: currentProduct.initRating,
-                          productImage: currentProduct.productImage,
-                          title: currentProduct.title,
-                          subTitle: currentProduct.subTitle,
-                          orignalPrice: currentProduct.originalPrice,
-                          salePrice: currentProduct.salePrice,
-                          favoriteOrNot: currentProduct.favoriteOrNot,
-                          newOrNot: currentProduct.newOrNot,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: ProductCard(
+                            product: currentProduct,
+                          ),
                         ),
                       );
                     }),
