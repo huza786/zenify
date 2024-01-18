@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card_providers.dart';
+import 'package:zenify/screens/DashboardScreens/ShopPage/components/filter_components.dart';
 import 'package:zenify/screens/DashboardScreens/provider/nav_bar_provider.dart';
 import 'package:zenify/screens/AuthenticationScreens/providers/email_validation_provider.dart';
 import 'package:zenify/utils/app_routes.dart';
@@ -32,10 +33,16 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (context) => ProductCardState(),
           ),
+          ChangeNotifierProvider(
+            create: (context) => FilterProvider(),
+          ),
         ],
         child: MaterialApp(
           theme: ThemeData(
-              scaffoldBackgroundColor: backgroundColor, useMaterial3: true),
+              appBarTheme: const AppBarTheme(
+                  centerTitle: true, iconTheme: IconThemeData()),
+              scaffoldBackgroundColor: backgroundColor,
+              useMaterial3: true),
           debugShowCheckedModeBanner: false,
           initialRoute: AppRoutes.initialRoute,
           routes: routes,

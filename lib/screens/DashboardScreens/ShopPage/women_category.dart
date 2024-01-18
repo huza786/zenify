@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
+import 'package:zenify/screens/DashboardScreens/ShopPage/components/bottom_sheet.dart';
+import 'package:zenify/screens/DashboardScreens/ShopPage/components/product_card_list_view.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/tag_widget.dart';
+import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
 class WomenCategories extends StatefulWidget {
@@ -15,6 +18,7 @@ class WomenCategories extends StatefulWidget {
 class _WomenCategoriesState extends State<WomenCategories> {
   double targetValue = 100.h;
   bool listOrNot = false;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +95,7 @@ class _WomenCategoriesState extends State<WomenCategories> {
                         style: const ButtonStyle(),
                         onPressed: () {
                           //TODO:Add filter page and filter the items
+                          Navigator.pushNamed(context, AppRoutes.filersPage);
                         },
                         child: SizedBox(
                           width: 63.w,
@@ -98,7 +103,7 @@ class _WomenCategoriesState extends State<WomenCategories> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Icon(
-                                Icons.format_align_justify_rounded,
+                                Icons.filter_list,
                                 color: Colors.black,
                               ),
                               Text(
@@ -110,34 +115,48 @@ class _WomenCategoriesState extends State<WomenCategories> {
                           ),
                         ),
                       ),
-                      TextButton(
-                        style: const ButtonStyle(),
-                        onPressed: () {
-                          //TODO:Add Sortby
-                        },
-                        child: SizedBox(
-                          width: 137.w,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Icon(
-                                Icons.swap_vert,
-                                color: Colors.black,
-                              ),
-                              Text(
-                                'Price: lowest to high',
-                                style: headerStyle.copyWith(
-                                    fontSize: 11, color: Colors.black),
-                              ),
-                            ],
+                      Builder(
+                        builder: (context) => TextButton(
+                          style: const ButtonStyle(),
+                          onPressed: () {
+                            //TODO:Add Sortby
+                            Scaffold.of(context)
+                                .showBottomSheet<void>((BuildContext context) {
+                              return BottomSheetView();
+                            });
+                          },
+                          child: SizedBox(
+                            width: 137.w,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Icon(
+                                  Icons.swap_vert,
+                                  color: Colors.black,
+                                ),
+                                Text(
+                                  'Price: lowest to high',
+                                  style: headerStyle.copyWith(
+                                      fontSize: 11, color: Colors.black),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       IconButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          setState(() {
+                            isLoading = true;
+                          });
+
+                          await Future.delayed(Duration(
+                              milliseconds: 500)); // Simulating a delay
+
                           setState(() {
                             targetValue = targetValue == 100.h ? 140.h : 100.h;
                             listOrNot = !listOrNot;
+                            isLoading = false;
                           });
                         },
                         icon: !listOrNot
@@ -151,7 +170,7 @@ class _WomenCategoriesState extends State<WomenCategories> {
                               ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -160,25 +179,61 @@ class _WomenCategoriesState extends State<WomenCategories> {
             height: 10.h,
           ),
           Expanded(
-            child: GridView.builder(
-                padding: EdgeInsets.all(8.w),
-                itemCount: productList.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: .6,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8.0, // Set spacing between columns
-                  mainAxisSpacing: 8.0,
-                ),
-                itemBuilder: (context, index) {
-                  // Access each product map in the list
-                  Product currentProduct = productList[index];
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w),
-                    child: ProductCard(
-                      product: currentProduct,
+            child: Stack(children: [
+              Positioned.fill(
+                child: isLoading
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : SizedBox.shrink(),
+              ),
+              listOrNot
+                  ?
+                  //Gridview of products
+                  GridView.builder(
+                      padding: EdgeInsets.all(8.w),
+                      itemCount: productList.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: .6,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 8.0, // Set spacing between columns
+                        mainAxisSpacing: 8.0,
+                      ),
+                      itemBuilder: (context, index) {
+                        // Access each product map in the list
+                        Product currentProduct = productList[index];
+                        return Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.w),
+                          child: ProductCard(
+                            product: currentProduct,
+                          ),
+                        );
+                      },
+                    )
+                  //ListView of products
+                  : GridView.builder(
+                      padding: EdgeInsets.all(8.w),
+                      itemCount: productList.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 3.1,
+                        crossAxisCount: 1,
+                        crossAxisSpacing: 8.0, // Set spacing between columns
+                        mainAxisSpacing: 8.0,
+                      ),
+                      itemBuilder: (context, index) {
+                        // Access each product map in the list
+                        Product currentProduct = productList[index];
+                        return Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.w),
+                          child: ProductCardListView(
+                            product: currentProduct,
+                          ),
+                        );
+                      },
                     ),
-                  );
-                }),
+            ]),
           )
         ],
       ),

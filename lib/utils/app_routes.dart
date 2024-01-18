@@ -3,6 +3,7 @@ import 'package:zenify/screens/AuthenticationScreens/login.dart';
 import 'package:zenify/screens/AuthenticationScreens/signup.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/home1.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/home2.dart';
+import 'package:zenify/screens/DashboardScreens/ShopPage/filters_page.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/women_category.dart';
 import 'package:zenify/screens/nav_bar_page.dart';
 
@@ -15,6 +16,7 @@ class AppRoutes {
   static const homeOne = '/homeone';
   static const hometwo = '/hometwo';
   static const womencategory = '/womencategory';
+  static const filersPage = '/filterspage';
 }
 
 var routes = {
@@ -25,4 +27,5 @@ var routes = {
   AppRoutes.homeOne: (context) => const HomeOne(),
   AppRoutes.hometwo: (context) => const HomeTwo(),
   AppRoutes.womencategory: (context) => const WomenCategories(),
+  AppRoutes.filersPage: (context) => const FiltersPage(),
 };

@@ -94,6 +94,8 @@ flutter:
         - asset: assets/fonts/Metropolis-Black.otf
         - asset: assets/fonts/Metropolis-BlackItalic.otf
         - asset: assets/fonts/Metropolis-SemiBold.otf
+        - asset: assets/fonts/Metropolis-Medium.otf
+
 
 
         
