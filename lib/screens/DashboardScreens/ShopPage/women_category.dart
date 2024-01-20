@@ -115,6 +115,7 @@ class _WomenCategoriesState extends State<WomenCategories> {
                           ),
                         ),
                       ),
+                      //SortBy
                       Builder(
                         builder: (context) => TextButton(
                           style: const ButtonStyle(),
@@ -122,7 +123,7 @@ class _WomenCategoriesState extends State<WomenCategories> {
                             //TODO:Add Sortby
                             Scaffold.of(context)
                                 .showBottomSheet<void>((BuildContext context) {
-                              return BottomSheetView();
+                              return const BottomSheetView();
                             });
                           },
                           child: SizedBox(
@@ -150,7 +151,7 @@ class _WomenCategoriesState extends State<WomenCategories> {
                             isLoading = true;
                           });
 
-                          await Future.delayed(Duration(
+                          await Future.delayed(const Duration(
                               milliseconds: 500)); // Simulating a delay
 
                           setState(() {
@@ -182,10 +183,10 @@ class _WomenCategoriesState extends State<WomenCategories> {
             child: Stack(children: [
               Positioned.fill(
                 child: isLoading
-                    ? Center(
-                        child: CircularProgressIndicator(),
+                    ? const Center(
+                        child: const CircularProgressIndicator(),
                       )
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
               ),
               listOrNot
                   ?
