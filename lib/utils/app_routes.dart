@@ -6,6 +6,7 @@ import 'package:zenify/screens/DashboardScreens/HomePages/home2.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/filters/brands_filter.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/filters/filters_page.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/women_category.dart';
+import 'package:zenify/screens/DashboardScreens/product_page.dart';
 import 'package:zenify/screens/nav_bar_page.dart';
 
 class AppRoutes {
@@ -19,6 +20,7 @@ class AppRoutes {
   static const womencategory = '/womencategory';
   static const filersPage = '/filterspage';
   static const brandsFiltersPage = '/brandsfilterspage';
+  static const productPage = '/productpage';
 }
 
 var routes = {
@@ -31,4 +33,5 @@ var routes = {
   AppRoutes.womencategory: (context) => const WomenCategories(),
   AppRoutes.filersPage: (context) => const FiltersPage(),
   AppRoutes.brandsFiltersPage: (context) => const BrandsFiltersPage(),
+  AppRoutes.productPage: (context) => const ProductPage(),
 };

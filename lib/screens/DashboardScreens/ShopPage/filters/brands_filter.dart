@@ -56,7 +56,7 @@ class _BrandsFiltersPageState extends State<BrandsFiltersPage> {
                 GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
-                    //make a method to filter items
+                    //TODO:make a method to filter items
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

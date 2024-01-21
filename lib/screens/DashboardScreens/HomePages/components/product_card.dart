@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card_providers.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/filter_components_providers.dart';
+import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
 class ProductCard extends StatefulWidget {
@@ -46,6 +47,11 @@ class _ProductCardState extends State<ProductCard> {
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(14), topRight: Radius.circular(14)),
         child: GestureDetector(
+          onTap: () {
+            //adding full product card info
+            Navigator.pushNamed(context, AppRoutes.productPage,
+                arguments: widget.product);
+          },
           onLongPress: () {
             showModalBottomSheet(
                 context: context,
