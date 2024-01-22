@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/components/expandable_model_and_provider.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card_providers.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
 import 'package:zenify/screens/DashboardScreens/provider/product_page_providers.dart';
@@ -20,27 +23,29 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     final productPageProvider = Provider.of<ProductPageProvider>(context);
     final productCardProvider = Provider.of<ProductCardState>(context);
+    final expandedProvider = Provider.of<ExpandedCardProvider>(context);
 
     //Method of passing an arguments to page in named push is just that you have
     //to provide arguments as below in page and then pass them in widgets with arguments property
     final Product product =
         ModalRoute.of(context)!.settings.arguments as Product;
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            //Adding share button
-            Icon(Icons.share)
-          ],
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back_ios_new),
-          ),
-          title: Text(
-            product.title.toString(),
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-          ),
+      appBar: AppBar(
+        actions: [
+          //Adding share button
+          const Icon(Icons.share)
+        ],
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        body: SafeArea(
+        title: Text(
+          product.title.toString(),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               //Images row
@@ -83,7 +88,7 @@ class _ProductPageState extends State<ProductPage> {
                       width: 138.w,
                       child: Center(
                         child: DropdownButtonFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText:
                                 '', // Set empty hintText to hide default text in dropdown
                             border: InputBorder.none, // Remove default border
@@ -99,9 +104,13 @@ class _ProductPageState extends State<ProductPage> {
                               .map(
                                 (size) => DropdownMenuItem<String>(
                                   value: size,
-                                  child: Text(
-                                    size,
-                                    style: headerStyle.copyWith(fontSize: 14),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 4, bottom: 4),
+                                    child: Text(
+                                      size,
+                                      style: headerStyle.copyWith(fontSize: 14),
+                                    ),
                                   ),
                                 ),
                               )
@@ -124,7 +133,7 @@ class _ProductPageState extends State<ProductPage> {
                       width: 138.w,
                       child: Center(
                         child: DropdownButtonFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText:
                                 '', // Set empty hintText to hide default text in dropdown
                             border: InputBorder.none, // Remove default border
@@ -140,9 +149,13 @@ class _ProductPageState extends State<ProductPage> {
                               .map(
                                 (size) => DropdownMenuItem<String>(
                                   value: size,
-                                  child: Text(
-                                    size,
-                                    style: headerStyle.copyWith(fontSize: 14),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 4, bottom: 4),
+                                    child: Text(
+                                      size,
+                                      style: headerStyle.copyWith(fontSize: 14),
+                                    ),
                                   ),
                                 ),
                               )
@@ -153,6 +166,7 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
                     ),
+                    //Favorite Button
                     IconButton(
                       style: ButtonStyle(
                           iconSize: MaterialStateProperty.all(20),
@@ -175,8 +189,165 @@ class _ProductPageState extends State<ProductPage> {
                   ],
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  //Company name and subtitle and rating
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          product.companyName,
+                          style: headerStyle.copyWith(
+                              fontSize: 24, fontWeight: FontWeight.w600),
+                        ),
+                        Text(product.subTitle,
+                            style: headerStyle.copyWith(fontSize: 11)),
+                        SizedBox(
+                          width: 125.w,
+                          child: Row(
+                            children: [
+                              RatingBarIndicator(
+                                itemSize: 16,
+                                rating: productCardProvider.rating,
+                                itemBuilder: (context, index) => const Icon(
+                                  Icons.star_rounded,
+                                  color: Colors.amber,
+                                ),
+                                itemCount: 5,
+                                direction: Axis.horizontal,
+                              ), //rating in numbers next to rating
+                              Text(
+                                '(${product.initRating})',
+                                style: headerStyle.copyWith(fontSize: 10),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      //Sale Price
+
+                      product.salePrice != 0
+                          ? Text(
+                              '\$${product.salePrice}',
+                              style: headerStyle.copyWith(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.green),
+                            )
+                          : const SizedBox.shrink(),
+                      //Orignal Price
+                      Text(
+                        '\$${product.originalPrice}',
+                        style: headerStyle.copyWith(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                            decoration: product.salePrice != 0
+                                ? TextDecoration.lineThrough
+                                : TextDecoration.none),
+                      ),
+                    ],
+                  ), // Sale price and org name
+                ],
+              ), //title rowmain row
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    'Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.'),
+              ),
+              Column(
+                children: expandedProvider.expandList
+                    .map(
+                      (ExpandItem item) => ExpansionTile(
+                        title: Text(
+                          item.expandedText.toString(),
+                          style: headerStyle,
+                        ),
+                        children: [
+                          Text(
+                            item.headerText,
+                            style: headerStyle,
+                          )
+                        ],
+                        childrenPadding: EdgeInsets.only(left: 30),
+                      ),
+                    )
+                    .toList(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'You can also like this',
+                  style: headerStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: 300.h,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: ListView.builder(
+                            //New Products
+                            scrollDirection: Axis.horizontal,
+                            itemCount: productList.length,
+                            itemBuilder: (context, index) {
+                              // Access each product map in the list
+                              Product currentProduct = productList[index];
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child: ProductCard(
+                                  product: currentProduct,
+                                ),
+                              );
+                            }),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
+
+/**ExpansionPanelList(
+                expansionCallback: (panelIndex, isExpanded) {
+                  expandedProvider.expandCard(panelIndex, isExpanded);
+                },
+                children: expandedProvider.expandList
+                    .map(
+                      (ExpandItem item) => ExpansionPanel(
+                          headerBuilder:
+                              (BuildContext context, bool isExpanded) {
+                            return ListTile(
+                              title: Text(item.headerText),
+                            );
+                          },
+                          body: Container(
+                            height: 105,
+                            width: 343,
+                            child: Center(
+                              child: Text(item.expandedText),
+                            ),
+                          ),
+                          isExpanded: item.isExpanded),
+                    )
+                    .toList(),
+              ) */

@@ -52,18 +52,8 @@ class _ShopPageState extends State<ShopPage> {
           body: const TabBarView(
             children: [
               SingleChildScrollView(child: WomenShopPage()),
-              Center(
-                child: Text(
-                  'Men',
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Center(
-                child: Text(
-                  'Children',
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-                ),
-              ),
+              SingleChildScrollView(child: WomenShopPage()),
+              SingleChildScrollView(child: WomenShopPage()),
             ],
           )),
     );
