@@ -273,7 +273,8 @@ class _ProductCardState extends State<ProductCard> {
                   top: 211.h,
                   child: Text(
                     widget.product.subTitle,
-                    style: headerStyle.copyWith(fontSize: 11, color: greyColor),
+                    style:
+                        headerStyle.copyWith(fontSize: 11, color: Colors.grey),
                   ),
                 ),
                 //Title

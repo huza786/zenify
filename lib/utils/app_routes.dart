@@ -3,10 +3,11 @@ import 'package:zenify/screens/AuthenticationScreens/login.dart';
 import 'package:zenify/screens/AuthenticationScreens/signup.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/home1.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/home2.dart';
+import 'package:zenify/screens/DashboardScreens/ProductScreens/rating_page.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/filters/brands_filter.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/filters/filters_page.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/women_category.dart';
-import 'package:zenify/screens/DashboardScreens/product_page.dart';
+import 'package:zenify/screens/DashboardScreens/ProductScreens/product_page.dart';
 import 'package:zenify/screens/nav_bar_page.dart';
 
 class AppRoutes {
@@ -21,6 +22,7 @@ class AppRoutes {
   static const filersPage = '/filterspage';
   static const brandsFiltersPage = '/brandsfilterspage';
   static const productPage = '/productpage';
+  static const ratingPage = '/ratingpage';
 }
 
 var routes = {
@@ -34,4 +36,5 @@ var routes = {
   AppRoutes.filersPage: (context) => const FiltersPage(),
   AppRoutes.brandsFiltersPage: (context) => const BrandsFiltersPage(),
   AppRoutes.productPage: (context) => const ProductPage(),
+  AppRoutes.ratingPage: (context) => const RatingPage(),
 };

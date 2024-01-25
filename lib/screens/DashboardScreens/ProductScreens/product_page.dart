@@ -7,6 +7,7 @@ import 'package:zenify/screens/DashboardScreens/HomePages/components/product_car
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card_providers.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
 import 'package:zenify/screens/DashboardScreens/provider/product_page_providers.dart';
+import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
 class ProductPage extends StatefulWidget {
@@ -21,7 +22,9 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
+    //Main provider of product page
     final productPageProvider = Provider.of<ProductPageProvider>(context);
+    //Provider providing product card values
     final productCardProvider = Provider.of<ProductCardState>(context);
     final expandedProvider = Provider.of<ExpandedCardProvider>(context);
 
@@ -218,15 +221,22 @@ class _ProductPageState extends State<ProductPage> {
                             width: 125.w,
                             child: Row(
                               children: [
-                                RatingBarIndicator(
-                                  itemSize: 16,
-                                  rating: productCardProvider.rating,
-                                  itemBuilder: (context, index) => const Icon(
-                                    Icons.star_rounded,
-                                    color: Colors.amber,
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, AppRoutes.ratingPage);
+                                  },
+                                  child: RatingBarIndicator(
+                                    unratedColor: Colors.grey,
+                                    itemSize: 16,
+                                    rating: productCardProvider.rating,
+                                    itemBuilder: (context, index) => const Icon(
+                                      Icons.star_rounded,
+                                      color: Colors.amber,
+                                    ),
+                                    itemCount: 5,
+                                    direction: Axis.horizontal,
                                   ),
-                                  itemCount: 5,
-                                  direction: Axis.horizontal,
                                 ), //rating in numbers next to rating
                                 Text(
                                   '(${product.initRating})',

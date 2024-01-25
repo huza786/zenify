@@ -28,8 +28,8 @@ class _MainNavBarState extends State<NavBarPage> {
           selectedLabelStyle: TextStyle(
             color: primaryRed,
           ),
-          unselectedLabelStyle: TextStyle(color: greyColor),
-          unselectedItemColor: greyColor,
+          unselectedLabelStyle: TextStyle(color: backgroundColor),
+          unselectedItemColor: backgroundColor,
           selectedItemColor: primaryRed,
           currentIndex: navBarState.selectedPage,
           onTap: (index) {

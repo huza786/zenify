@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card_providers.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/filter_components_providers.dart';
+import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
 class ProductCardListView extends StatefulWidget {
@@ -51,6 +52,11 @@ class _ProductCardListViewState extends State<ProductCardListView> {
 
         //productcard height and width
         child: GestureDetector(
+          onTap: () {
+            //adding full product card info
+            Navigator.pushNamed(context, AppRoutes.productPage,
+                arguments: widget.product);
+          },
           onLongPress: () {
             showModalBottomSheet(
                 context: context,
@@ -278,7 +284,8 @@ class _ProductCardListViewState extends State<ProductCardListView> {
                   left: 118.89.w,
                   child: Text(
                     widget.product.subTitle,
-                    style: headerStyle.copyWith(fontSize: 11, color: greyColor),
+                    style:
+                        headerStyle.copyWith(fontSize: 11, color: Colors.grey),
                   ),
                 ),
                 //Title

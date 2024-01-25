@@ -8,8 +8,6 @@ TextStyle customTextStyle = GoogleFonts.metrophobic();
 Color primaryRed = const Color(0xFFDB3022);
 Color backgroundColor = const Color(0xFFF9F9F9);
 
-Color greyColor = const Color.fromARGB(255, 5, 5, 5);
-
 const TextStyle headerStyle = TextStyle(fontFamily: 'Metropolis');
 const String arrow = 'assets/icons/arrow.svg';
 Widget arrowIcon = SvgPicture.asset(
