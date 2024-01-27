@@ -29,4 +29,11 @@ class ProductPageProvider with ChangeNotifier {
     selectedColour = Colour;
     notifyListeners();
   }
+
+  bool _photosOrNot = false;
+  bool get photosOrNot => _photosOrNot;
+  void showPhotos() {
+    _photosOrNot = !_photosOrNot;
+    notifyListeners();
+  }
 }

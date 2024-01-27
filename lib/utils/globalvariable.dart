@@ -52,6 +52,18 @@ const String ptr3 = 'assets/images/ptr3.jpg';
 const String ptr4 = 'assets/images/ptr4.jpg';
 
 const String ptr5 = 'assets/images/ptr5.jpg';
+const String profilePhoto = 'assets/images/profile.jpg';
+List<String> reviewPhotos=[
+    ptr1 ,
+
+  ptr2 ,
+
+  ptr3 ,
+
+  ptr4 ,
+
+  ptr5 ,]
+
 List<CategoryModel> categoriesList = [
   CategoryModel(title: "New", imageAsset: lnd1),
   CategoryModel(title: "Clothes", imageAsset: lnd2),
