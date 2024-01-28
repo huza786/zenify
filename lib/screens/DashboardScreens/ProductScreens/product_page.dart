@@ -28,15 +28,15 @@ class _ProductPageState extends State<ProductPage> {
     final productCardProvider = Provider.of<ProductCardState>(context);
     final expandedProvider = Provider.of<ExpandedCardProvider>(context);
 
-    //Method of passing an arguments to page in named push is just that you have
+    //Method of passing an arguments to page in namedpush is just that you have
     //to provide arguments as below in page and then pass them in widgets with arguments property
     final Product product =
         ModalRoute.of(context)!.settings.arguments as Product;
     return Scaffold(
       appBar: AppBar(
-        actions: [
+        actions: const [
           //Adding share button
-          const Icon(Icons.share)
+          Icon(Icons.share)
         ],
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
@@ -55,7 +55,7 @@ class _ProductPageState extends State<ProductPage> {
             child: Column(
               children: [
                 //Images row
-                Container(
+                SizedBox(
                   height: 413.h,
                   child: ListView.builder(
                     itemCount: 5,
@@ -63,7 +63,7 @@ class _ProductPageState extends State<ProductPage> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 2),
-                        child: Container(
+                        child: SizedBox(
                           height: 413.h,
                           width: 275.w,
                           child: Image.asset(
@@ -224,7 +224,8 @@ class _ProductPageState extends State<ProductPage> {
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.pushNamed(
-                                        context, AppRoutes.ratingPage);
+                                        context, AppRoutes.ratingPage,
+                                        arguments: product);
                                   },
                                   child: RatingBarIndicator(
                                     unratedColor: Colors.grey,
@@ -276,8 +277,8 @@ class _ProductPageState extends State<ProductPage> {
                     ), // Sale price and org name
                   ],
                 ), //title rowmain row
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                       'Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.'),
                 ),
@@ -289,13 +290,13 @@ class _ProductPageState extends State<ProductPage> {
                             item.expandedText.toString(),
                             style: headerStyle,
                           ),
+                          childrenPadding: const EdgeInsets.only(left: 30),
                           children: [
                             Text(
                               item.headerText,
                               style: headerStyle,
                             )
                           ],
-                          childrenPadding: EdgeInsets.only(left: 30),
                         ),
                       )
                       .toList(),

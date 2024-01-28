@@ -14,7 +14,7 @@ class RatingLineProgressIndicator extends StatelessWidget {
   final double star4review;
   final double star5review;
 
-  const RatingLineProgressIndicator(
+  RatingLineProgressIndicator(
       {super.key,
       required this.star1review,
       required this.star2review,
@@ -26,6 +26,16 @@ class RatingLineProgressIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final double total_reviews =
         star1review + star2review + star3review + star4review + star5review;
+    final double progress5 =
+        total_reviews != 0 ? star5review / total_reviews + 0.01 : 0;
+    final double progress4 =
+        total_reviews != 0 ? star4review / total_reviews + 0.01 : 0;
+    final double progress3 =
+        total_reviews != 0 ? star3review / total_reviews + 0.01 : 0;
+    final double progress2 =
+        total_reviews != 0 ? star2review / total_reviews + 0.01 : 0;
+    final double progress1 =
+        total_reviews != 0 ? star1review / total_reviews + 0.01 : 0;
     return Padding(
       padding: EdgeInsets.only(right: 10.w),
       child: Column(
@@ -34,14 +44,14 @@ class RatingLineProgressIndicator extends StatelessWidget {
           //5 stars line
           Row(
             children: [
-              StarRow5(),
+              const StarRow5(),
               Padding(
                 padding: EdgeInsets.only(top: 2.h, left: 10.w),
-                child: Container(
+                child: SizedBox(
                   width: 125.w,
                   child: LinearProgressIndicator(
                     color: primaryRed,
-                    value: star5review / total_reviews,
+                    value: progress5,
                     backgroundColor: backgroundColor,
                     minHeight: 8,
                     borderRadius: BorderRadius.circular(4),
@@ -63,14 +73,14 @@ class RatingLineProgressIndicator extends StatelessWidget {
           //4 stars line
           Row(
             children: [
-              StarRow4(),
+              const StarRow4(),
               Padding(
                 padding: EdgeInsets.only(top: 6.h, bottom: 6.h, left: 10.w),
-                child: Container(
+                child: SizedBox(
                   width: 125.w,
                   child: LinearProgressIndicator(
                     color: primaryRed,
-                    value: star4review / total_reviews,
+                    value: progress4,
                     backgroundColor: backgroundColor,
                     minHeight: 8,
                     borderRadius: BorderRadius.circular(4),
@@ -92,14 +102,14 @@ class RatingLineProgressIndicator extends StatelessWidget {
           //3 stars line
           Row(
             children: [
-              StarRow3(),
+              const StarRow3(),
               Padding(
                 padding: EdgeInsets.only(bottom: 2.h, left: 10.w),
-                child: Container(
+                child: SizedBox(
                   width: 125.w,
                   child: LinearProgressIndicator(
                     color: primaryRed,
-                    value: star3review / total_reviews,
+                    value: progress3,
                     backgroundColor: backgroundColor,
                     minHeight: 8,
                     borderRadius: BorderRadius.circular(4),
@@ -121,14 +131,14 @@ class RatingLineProgressIndicator extends StatelessWidget {
           //2 stars line
           Row(
             children: [
-              StarRow2(),
+              const StarRow2(),
               Padding(
                 padding: EdgeInsets.only(bottom: 2.h, top: 6.h, left: 10.w),
-                child: Container(
+                child: SizedBox(
                   width: 125.w,
                   child: LinearProgressIndicator(
                     color: primaryRed,
-                    value: star2review / total_reviews,
+                    value: progress2,
                     backgroundColor: backgroundColor,
                     minHeight: 8,
                     borderRadius: BorderRadius.circular(4),
@@ -150,14 +160,14 @@ class RatingLineProgressIndicator extends StatelessWidget {
           //1 stars line
           Row(
             children: [
-              StarRow1(),
+              const StarRow1(),
               Padding(
                 padding: EdgeInsets.only(top: 3.h, left: 10.w),
-                child: Container(
+                child: SizedBox(
                   width: 125.w,
                   child: LinearProgressIndicator(
                     color: primaryRed,
-                    value: star1review / total_reviews + 0.01,
+                    value: progress1,
                     backgroundColor: backgroundColor,
                     minHeight: 8,
                     borderRadius: BorderRadius.circular(4),

@@ -162,7 +162,7 @@ class _BrandsFiltersPageState extends State<BrandsFiltersPage> {
                                       Icons.check_box_rounded,
                                       color: primaryRed,
                                     )
-                                  : Icon(
+                                  : const Icon(
                                       Icons.check_box_outline_blank,
                                       color: Colors.grey,
                                     ),

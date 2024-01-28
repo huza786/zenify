@@ -9,7 +9,6 @@ import 'package:zenify/screens/DashboardScreens/provider/nav_bar_provider.dart';
 import 'package:zenify/screens/DashboardScreens/provider/product_page_providers.dart';
 import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
-import 'package:zenify/utils/providers.dart';
 
 void main() {
   runApp(

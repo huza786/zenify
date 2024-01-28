@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/components/review_model.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/category_model.dart';
 
 TextStyle customTextStyle = GoogleFonts.metrophobic();
@@ -53,16 +56,13 @@ const String ptr4 = 'assets/images/ptr4.jpg';
 
 const String ptr5 = 'assets/images/ptr5.jpg';
 const String profilePhoto = 'assets/images/profile.jpg';
-List<String> reviewPhotos=[
-    ptr1 ,
-
-  ptr2 ,
-
-  ptr3 ,
-
-  ptr4 ,
-
-  ptr5 ,]
+List<String> reviewPhotos = [
+  ptr1,
+  ptr2,
+  ptr3,
+  ptr4,
+  ptr5,
+];
 
 List<CategoryModel> categoriesList = [
   CategoryModel(title: "New", imageAsset: lnd1),
@@ -78,6 +78,23 @@ List<CategoryModel> categoriesList = [
   favoriteOrNot: false,
   newOrNot: false,
 ) */
+List<Review> ReviewList = List.generate(
+  8,
+  (index) => Review(
+    userName: 'userName',
+    userProfilePhoto: profilePhoto,
+    reviewText: 'This Is a Random Review $index',
+    starRating: Random().nextInt(
+      5,
+    ),
+    photos: reviewPhotos,
+    createdAt: DateTime.now().subtract(
+      Duration(
+        days: index,
+      ),
+    ),
+  ),
+);
 List<Product> productList = [
   Product(
     productImage: ptr1,
@@ -90,6 +107,7 @@ List<Product> productList = [
     initRating: 4.5,
     companyName: 'H&M',
     description: 'A stylish and comfortable t-shirt with a unique design.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr2,
@@ -102,6 +120,7 @@ List<Product> productList = [
     initRating: 4.2,
     companyName: 'H&M',
     description: 'An elegant and eye-catching t-shirt for a trendy look.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr2,
@@ -114,6 +133,7 @@ List<Product> productList = [
     initRating: 3.8,
     companyName: 'H&M',
     description: 'A comfortable and stylish t-shirt with a modern touch.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr3,
@@ -126,6 +146,7 @@ List<Product> productList = [
     initRating: 4.0,
     companyName: 'H&M',
     description: 'A trendy t-shirt with a perfect blend of style and comfort.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr3,
@@ -138,6 +159,7 @@ List<Product> productList = [
     initRating: 3.5,
     companyName: 'H&M',
     description: 'A classic t-shirt that never goes out of style.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr3,
@@ -150,6 +172,7 @@ List<Product> productList = [
     initRating: 4.1,
     companyName: 'H&M',
     description: 'Stay cool and comfortable with this stylish t-shirt.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr4,
@@ -162,6 +185,7 @@ List<Product> productList = [
     initRating: 4.8,
     companyName: 'H&M',
     description: 'A fancy t-shirt that makes a bold fashion statement.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr4,
@@ -174,6 +198,7 @@ List<Product> productList = [
     initRating: 3.3,
     companyName: 'H&M',
     description: 'Achieve a stylish look with this comfortable t-shirt.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr4,
@@ -186,6 +211,7 @@ List<Product> productList = [
     initRating: 4.2,
     companyName: 'H&M',
     description: 'Stay on-trend with this chic and comfortable t-shirt.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr4,
@@ -198,6 +224,7 @@ List<Product> productList = [
     initRating: 3.7,
     companyName: 'H&M',
     description: 'A timeless classic for a casual and relaxed look.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr4,
@@ -210,6 +237,7 @@ List<Product> productList = [
     initRating: 4.0,
     companyName: 'H&M',
     description: 'Stay cool and stylish with this trendy t-shirt.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr4,
@@ -222,6 +250,7 @@ List<Product> productList = [
     initRating: 3.9,
     companyName: 'H&M',
     description: 'Make a statement with this fancy and fashionable t-shirt.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr4,
@@ -234,6 +263,7 @@ List<Product> productList = [
     initRating: 4.6,
     companyName: 'H&M',
     description: 'Step out in style with this comfortable and chic t-shirt.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr4,
@@ -246,6 +276,7 @@ List<Product> productList = [
     initRating: 4.7,
     companyName: 'H&M',
     description: 'Stay trendy and comfortable with this modern t-shirt.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr5,
@@ -258,6 +289,7 @@ List<Product> productList = [
     initRating: 3.2,
     companyName: 'H&M',
     description: 'A classic choice for a laid-back and casual style.',
+    reviews: ReviewList,
   ),
   Product(
     productImage: ptr5,
@@ -270,6 +302,7 @@ List<Product> productList = [
     initRating: 4.4,
     companyName: 'H&M',
     description: 'Stay cool and fashionable with this trendy t-shirt.',
+    reviews: ReviewList,
   ),
   // ... (add more products with unique descriptions)
 ];

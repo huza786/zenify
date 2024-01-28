@@ -25,11 +25,11 @@ class _MainNavBarState extends State<NavBarPage> {
           elevation: 5,
           type: BottomNavigationBarType.fixed,
           selectedIconTheme: const IconThemeData(fill: 1),
-          selectedLabelStyle: TextStyle(
+          selectedLabelStyle: headerStyle.copyWith(
             color: primaryRed,
           ),
-          unselectedLabelStyle: TextStyle(color: backgroundColor),
-          unselectedItemColor: backgroundColor,
+          unselectedLabelStyle: headerStyle.copyWith(color: Colors.grey),
+          unselectedItemColor: Colors.grey,
           selectedItemColor: primaryRed,
           currentIndex: navBarState.selectedPage,
           onTap: (index) {

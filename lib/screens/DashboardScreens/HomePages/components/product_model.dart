@@ -1,36 +1,18 @@
-/// A class representing a product with essential details.
+import 'package:zenify/screens/DashboardScreens/HomePages/components/review_model.dart';
+
 class Product {
-  /// The image URL of the product.
   String productImage;
-
-  /// The title of the product.
   String title;
-
-  /// The subtitle or additional information about the product.
   String subTitle;
-
-  /// The original price of the product.
   double originalPrice;
-
-  /// The discounted sale price of the product.
   double salePrice;
-
-  /// Indicates whether the product is marked as a favorite or not.
   bool favoriteOrNot;
-
-  /// Indicates whether the product is marked as new or not.
   bool newOrNot;
-
-  /// The initial rating of the product.
   double initRating;
-
-  /// The name of the company associated with the product.
   String companyName;
-
-  /// A brief description of the product.
   String description;
+  List<Review> reviews; // New property to hold the list of reviews
 
-  /// Constructor for creating a Product instance.
   Product({
     required this.productImage,
     required this.title,
@@ -42,9 +24,9 @@ class Product {
     required this.initRating,
     required this.companyName,
     required this.description,
+    required this.reviews, // Initialize the list of reviews in the constructor
   });
 
-  /// Factory method to create a Product instance from a Map.
   factory Product.fromMap(Map<String, dynamic> map) {
     return Product(
       productImage: map['productImage'],
@@ -57,10 +39,12 @@ class Product {
       initRating: map['initRating'],
       companyName: map['companyName'],
       description: map['description'],
+      reviews: (map['reviews'] as List<dynamic>)
+          .map((reviewMap) => Review.fromMap(reviewMap))
+          .toList(),
     );
   }
 
-  /// Method to convert a Product instance to a Map.
   Map<String, dynamic> toMap() {
     return {
       'productImage': productImage,
@@ -73,6 +57,7 @@ class Product {
       'initRating': initRating,
       'companyName': companyName,
       'description': description,
+      'reviews': reviews.map((review) => review.toMap()).toList(),
     };
   }
 }

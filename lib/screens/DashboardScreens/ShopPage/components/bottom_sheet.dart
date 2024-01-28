@@ -38,7 +38,7 @@ class BottomSheetView extends StatelessWidget {
                 top: 91.h,
                 left: 16.w,
                 child: SingleChildScrollView(
-                  child: Container(
+                  child: SizedBox(
                     width: MediaQuery.of(context)
                         .size
                         .width, // Set a fixed width or adjust as needed

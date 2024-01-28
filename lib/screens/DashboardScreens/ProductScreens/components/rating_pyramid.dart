@@ -11,9 +11,10 @@ class RatingPyramid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+      child:
+          const Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
         //row of 5 stars
-        StarRow5(),
+        const StarRow5(),
         StarRow4(),
         StarRow3(),
         StarRow2(),

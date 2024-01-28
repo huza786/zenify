@@ -1,6 +1,9 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
 import 'package:zenify/screens/DashboardScreens/ProductScreens/components/4stars_row.dart';
 import 'package:zenify/screens/DashboardScreens/ProductScreens/components/5stars_row.dart';
 import 'package:zenify/screens/DashboardScreens/ProductScreens/components/rating_line_progress.dart';
@@ -17,16 +20,33 @@ class RatingPage extends StatefulWidget {
 
 class _RatingPageState extends State<RatingPage> {
   bool photosOrNot = false;
-  //TODO: you have to navigation and argiments to show full rating stats fetching from product model
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final productPageProvider = Provider.of<ProductPageProvider>(context);
+    final Product product =
+        ModalRoute.of(context)!.settings.arguments as Product;
+
+    productPageProvider.showStarsIntValue(product.reviews);
+    productPageProvider.showAverageNumber(product.reviews);
+  }
+
   @override
   Widget build(BuildContext context) {
     final productPageProvider = Provider.of<ProductPageProvider>(context);
+    final Product product =
+        ModalRoute.of(context)!.settings.arguments as Product;
+    // final Product product =
+    //     ModalRoute.of(context)!.settings.arguments as Product;
+    // // final averageNumber =
+    // //     productPageProvider.showAverageNumber(product.reviews);
+    // productPageProvider.showStarsIntValue(product.reviews);
+    // productPageProvider.showAverageNumber(product.reviews);
 
     return Scaffold(
       appBar: AppBar(
-        actions: [
+        actions: const [
           //Adding share button
-          const Icon(Icons.share)
+          Icon(Icons.share)
         ],
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
@@ -70,37 +90,40 @@ class _RatingPageState extends State<RatingPage> {
                         children: [
                           Text(
                             //average rating of product
-                            '4.3',
+                            productPageProvider.averageNumber
+                                .toStringAsFixed(1)
+                                .toString(),
                             style: headerStyle.copyWith(
                                 fontSize: 44, fontWeight: FontWeight.w600),
                           ),
                           Text(
                             //Total ratings
-                            '23 ratings',
+                            "${product.reviews.length} Ratings",
                             style: headerStyle.copyWith(),
                           ),
                         ],
                       ),
-                      Container(
-                        // height: 95.h,
-                        // width: 236.w,
-                        child: Row(
-                          children: [
-                            // Padding(
-                            //   padding: EdgeInsets.only(
-                            //     left: 28.w,
-                            //     right: 10.w,
-                            //   ),
-                            //   child: RatingPyramid(),
-                            // ),
-                            RatingLineProgressIndicator(
-                                star1review: 50,
-                                star2review: 2,
-                                star3review: 4,
-                                star4review: 5,
-                                star5review: 12)
-                          ],
-                        ),
+                      Row(
+                        children: [
+                          // Padding(
+                          //   padding: EdgeInsets.only(
+                          //     left: 28.w,
+                          //     right: 10.w,
+                          //   ),
+                          //   child: RatingPyramid(),
+                          // ),
+                          RatingLineProgressIndicator(
+                              star1review:
+                                  productPageProvider.stars5Number.toDouble(),
+                              star2review:
+                                  productPageProvider.stars4Number.toDouble(),
+                              star3review:
+                                  productPageProvider.stars3Number.toDouble(),
+                              star4review:
+                                  productPageProvider.stars2Number.toDouble(),
+                              star5review:
+                                  productPageProvider.stars1Number.toDouble())
+                        ],
                       )
                     ],
                   ),
@@ -123,10 +146,10 @@ class _RatingPageState extends State<RatingPage> {
                           IconButton(
                             onPressed: () {
                               productPageProvider.showPhotos();
-                              print(productPageProvider.photosOrNot);
                               //When pressed only those reviews would be shown that are with photos
                             },
-                            icon: Icon(Icons.check_box_outline_blank_rounded),
+                            icon: const Icon(
+                                Icons.check_box_outline_blank_rounded),
                             selectedIcon: Icon(
                               Icons.check_box_rounded,
                               color: primaryRed,
