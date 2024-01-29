@@ -42,13 +42,16 @@ class ProductPageProvider with ChangeNotifier {
   double sumAvarageSum = 0;
   double get averageNumber => _averageNumber;
   void showAverageNumber(List<Review> reviews) {
-    sumAvarageSum = 0;
+    double sumAvarageSum = 0;
 
-    for (var i = 0; i < reviews.length; i++) {
-      sumAvarageSum += reviews[i].starRating;
+    for (int i = 0; i < reviews.length; i++) {
+      print(reviews[i].starRating);
+      sumAvarageSum = sumAvarageSum + reviews[i].starRating;
+      print("sumAvarageSum=$sumAvarageSum");
     }
+    print(_averageNumber = sumAvarageSum / reviews.length);
     _averageNumber = sumAvarageSum / reviews.length;
-    notifyListeners();
+    // notifyListeners();
   }
 
   int _stars5Number = 0;
@@ -92,20 +95,19 @@ class ProductPageProvider with ChangeNotifier {
     int review3Stars = 0;
     int review2Stars = 0;
     int review1Stars = 0;
+    //TODO: fixing logic this one doesnot work well
 
     for (int i = 0; i < reviews.length; i++) {
-      if (reviews[i] != null) {
-        if (reviews[i].starRating == 5) {
-          review5Stars++;
-        } else if (reviews[i].starRating == 4) {
-          review4Stars++;
-        } else if (reviews[i].starRating == 3) {
-          review3Stars++;
-        } else if (reviews[i].starRating == 2) {
-          review2Stars++;
-        } else if (reviews[i].starRating == 1) {
-          review1Stars++;
-        }
+      if (reviews[i].starRating == 5) {
+        review5Stars++;
+      } else if (reviews[i].starRating == 4) {
+        review4Stars++;
+      } else if (reviews[i].starRating == 3) {
+        review3Stars++;
+      } else if (reviews[i].starRating == 2) {
+        review2Stars++;
+      } else {
+        review1Stars++;
       }
     }
 
@@ -114,6 +116,6 @@ class ProductPageProvider with ChangeNotifier {
     _stars3Number = review3Stars;
     _stars2Number = review2Stars;
     _stars1Number = review1Stars;
-    notifyListeners();
+    // notifyListeners();
   }
 }

@@ -5,6 +5,7 @@ class Review {
   final int starRating;
   final List<String> photos;
   final DateTime createdAt; // New field for creation time
+  final bool hasPhotos; // New field for indicating if the review has photos
 
   Review({
     required this.userName,
@@ -13,7 +14,7 @@ class Review {
     required this.starRating,
     required this.photos,
     required this.createdAt,
-  });
+  }) : hasPhotos = photos.isNotEmpty;
 
   factory Review.fromMap(Map<String, dynamic> map) {
     return Review(

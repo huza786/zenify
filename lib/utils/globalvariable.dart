@@ -81,12 +81,14 @@ List<CategoryModel> categoriesList = [
 List<Review> ReviewList = List.generate(
   8,
   (index) => Review(
-    userName: 'userName',
+    userName: 'Micheal Howard',
     userProfilePhoto: profilePhoto,
-    reviewText: 'This Is a Random Review $index',
+    reviewText:
+        """The dress is great! Very classy and comfortable. It fit perfectly! I'm 5'7" and 130 pounds. I am a 34B chest. This dress would be too long for those who are shorter but could be hemmed. I wouldn't recommend it for those big chested as I am smaller chested and it fit me perfectly. The underarms were not too wide and the dress was made well. $index""",
     starRating: Random().nextInt(
-      5,
-    ),
+          5,
+        ) +
+        1,
     photos: reviewPhotos,
     createdAt: DateTime.now().subtract(
       Duration(

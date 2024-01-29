@@ -8,11 +8,11 @@ import 'package:zenify/screens/DashboardScreens/ProductScreens/components/5stars
 import 'package:zenify/utils/globalvariable.dart';
 
 class RatingLineProgressIndicator extends StatelessWidget {
-  final double star1review;
-  final double star2review;
-  final double star3review;
-  final double star4review;
-  final double star5review;
+  final int star1review;
+  final int star2review;
+  final int star3review;
+  final int star4review;
+  final int star5review;
 
   RatingLineProgressIndicator(
       {super.key,
@@ -24,7 +24,7 @@ class RatingLineProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double total_reviews =
+    final int total_reviews =
         star1review + star2review + star3review + star4review + star5review;
     final double progress5 =
         total_reviews != 0 ? star5review / total_reviews + 0.01 : 0;
