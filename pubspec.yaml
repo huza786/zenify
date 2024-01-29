@@ -41,6 +41,9 @@ dependencies:
   flutter_svg: ^2.0.9
   provider: ^6.1.1
   flutter_rating_bar: ^4.0.1
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  cloud_firestore: ^4.14.0
   # icon_decoration: ^2.0.2
 flutter_native_splash:
   color: "#f5f7f5" #white color

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "703974786186",
+    "project_id": "zenify-786",
+    "storage_bucket": "zenify-786.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703974786186:android:6d85df314663a298f41973",
+        "android_client_info": {
+          "package_name": "com.example.zenify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADLKGKrQPGYFNXuhw97chfOEJjiiT4jcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

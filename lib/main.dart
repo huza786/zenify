@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:zenify/firebase_options.dart';
 import 'package:zenify/screens/AuthenticationScreens/providers/email_validation_provider.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/expandable_model_and_provider.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card_providers.dart';
@@ -10,7 +12,10 @@ import 'package:zenify/screens/DashboardScreens/provider/product_page_providers.
 import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(
     const MyApp(),
   );

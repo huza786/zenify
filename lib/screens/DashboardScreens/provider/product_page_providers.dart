@@ -118,4 +118,16 @@ class ProductPageProvider with ChangeNotifier {
     _stars1Number = review1Stars;
     // notifyListeners();
   }
+
+  List<Review> photoReviews = [];
+
+  void addPhotoReviews(List<Review> reviews) {
+    // Filter reviews based on the condition (second review has non-empty photos)
+    List<Review> filteredReviews =
+        reviews.where((element) => element.photos.isNotEmpty).toList();
+
+    // Add the filtered reviews to the photoReviews list
+    photoReviews.addAll(filteredReviews);
+    notifyListeners();
+  }
 }
