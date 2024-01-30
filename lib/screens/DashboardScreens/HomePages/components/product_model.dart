@@ -1,5 +1,7 @@
 import 'package:zenify/screens/DashboardScreens/HomePages/components/review_model.dart';
 
+enum ProductState { newProduct, saleProduct, nullProduct, outOfStock }
+
 class Product {
   String productImage;
   String title;
@@ -7,11 +9,11 @@ class Product {
   double originalPrice;
   double salePrice;
   bool favoriteOrNot;
-  bool newOrNot;
+  ProductState productStatus; // Change type to ProductState
   double initRating;
   String companyName;
   String description;
-  List<Review> reviews; // New property to hold the list of reviews
+  List<Review> reviews;
 
   Product({
     required this.productImage,
@@ -20,11 +22,11 @@ class Product {
     required this.originalPrice,
     required this.salePrice,
     required this.favoriteOrNot,
-    required this.newOrNot,
+    required this.productStatus,
     required this.initRating,
     required this.companyName,
     required this.description,
-    required this.reviews, // Initialize the list of reviews in the constructor
+    required this.reviews,
   });
 
   factory Product.fromMap(Map<String, dynamic> map) {
@@ -35,7 +37,7 @@ class Product {
       originalPrice: map['originalPrice'],
       salePrice: map['salePrice'],
       favoriteOrNot: map['favoriteOrNot'],
-      newOrNot: map['newOrNot'],
+      productStatus: _parseProductState(map['newOrNot']),
       initRating: map['initRating'],
       companyName: map['companyName'],
       description: map['description'],
@@ -53,11 +55,29 @@ class Product {
       'originalPrice': originalPrice,
       'salePrice': salePrice,
       'favoriteOrNot': favoriteOrNot,
-      'newOrNot': newOrNot,
+      'newOrNot': _serializeProductState(productStatus),
       'initRating': initRating,
       'companyName': companyName,
       'description': description,
       'reviews': reviews.map((review) => review.toMap()).toList(),
     };
+  }
+
+  // Helper method to convert ProductState to a string
+  static String _serializeProductState(ProductState state) {
+    return state.toString().split('.').last;
+  }
+
+  // Helper method to parse a string into ProductState
+  static ProductState _parseProductState(String? stateString) {
+    if (stateString == 'newProduct') {
+      return ProductState.newProduct;
+    } else if (stateString == 'saleProduct') {
+      return ProductState.saleProduct;
+    } else if (stateString == 'outOfStock') {
+      return ProductState.outOfStock;
+    } else {
+      return ProductState.nullProduct;
+    }
   }
 }

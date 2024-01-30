@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/bottom_sheet.dart';
+import 'package:zenify/screens/DashboardScreens/ShopPage/components/custom_app_bar.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/product_card_list_view.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/tag_widget.dart';
 import 'package:zenify/utils/app_routes.dart';
@@ -244,31 +245,6 @@ class _WomenCategoriesState extends State<WomenCategories> {
   }
 }
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final Widget child;
-  final double height;
-  final Duration duration;
-
-  const CustomAppBar(
-      {super.key,
-      required this.child,
-      this.height = kToolbarHeight,
-      required this.duration});
-
-  @override
-  Size get preferredSize => Size.fromHeight(height);
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      // color: Colors.amber,
-      duration: duration,
-      height: height,
-      // color: Colors.amber,
-      child: child,
-    );
-  }
-}
 
 
 //// bottom: PreferredSize(

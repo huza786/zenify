@@ -8,7 +8,7 @@ import 'package:zenify/screens/DashboardScreens/ShopPage/components/filter_compo
 import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
-class ProductCardListView extends StatefulWidget {
+class FavoriteGridCard extends StatefulWidget {
 //  final bool favoriteOrNot ;
 //  final bool newOrNot ;
 //  final String title ;
@@ -18,13 +18,13 @@ class ProductCardListView extends StatefulWidget {
 //  final String productImage;
 //  final double initRating ;
   final Product product;
-  const ProductCardListView({super.key, required this.product});
+  const FavoriteGridCard({super.key, required this.product});
 
   @override
-  State<ProductCardListView> createState() => _ProductCardListViewState();
+  State<FavoriteGridCard> createState() => _FavoriteGridCardState();
 }
 
-class _ProductCardListViewState extends State<ProductCardListView> {
+class _FavoriteGridCardState extends State<FavoriteGridCard> {
   @override
   void initState() {
     // TODO: implement initState
@@ -45,12 +45,7 @@ class _ProductCardListViewState extends State<ProductCardListView> {
     return Consumer<ProductCardState>(
       builder: (context, productCardState, _) => ClipRRect(
         borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(14),
-            topRight: Radius.circular(14),
-            bottomLeft: Radius.circular(14),
-            bottomRight: Radius.circular(14)),
-
-        //productcard height and width
+            topLeft: Radius.circular(14), topRight: Radius.circular(14)),
         child: GestureDetector(
           onTap: () {
             //adding full product card info
@@ -171,22 +166,22 @@ class _ProductCardListViewState extends State<ProductCardListView> {
                   );
                 });
           },
-          child: Container(
-            decoration: BoxDecoration(color: Colors.white),
+          child: SizedBox(
             // decoration: BoxDecoration(color: Colors.transparent),
-            height: 104.h,
-            width: 343.w,
+            height: 320.h,
+            width: 150.w,
             child: Stack(
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(14),
                   child: Image.asset(
-                    height: 104.h,
-                    width: 104.w,
+                    height: 184.h,
+                    width: 148.w,
                     widget.product.productImage,
                     fit: BoxFit.fill,
                   ),
                 ),
+                //TODO:NewORSALE WIDGET
                 Positioned(
                   top: 8.h,
                   left: 9.w,
@@ -239,35 +234,36 @@ class _ProductCardListViewState extends State<ProductCardListView> {
 
                 ///Favorite Button
                 Positioned(
-                  top: 69.23.h,
-                  left: 290.w,
+                  top: 155.h,
+                  left: 105.w,
                   child: IconButton(
                     style: ButtonStyle(
-                        iconSize: MaterialStateProperty.all(20),
-                        iconColor: MaterialStateProperty.all(Colors.grey),
-                        shadowColor:
-                            MaterialStateProperty.all<Color>(Colors.black),
-                        elevation: MaterialStateProperty.all<double>(2),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white)),
+                      iconSize: MaterialStateProperty.all(20),
+                      iconColor: MaterialStateProperty.all(Colors.grey),
+                      shadowColor:
+                          MaterialStateProperty.all<Color>(Colors.black),
+                      elevation: MaterialStateProperty.all<double>(2),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(primaryRed),
+                    ),
                     onPressed: () {
-                      productCardState.favoriteFunction();
+                      //TODO:add to cart
                     },
                     isSelected: widget.product.favoriteOrNot,
-                    selectedIcon: Icon(
-                      Icons.favorite,
-                      color: primaryRed,
+                    selectedIcon: const Icon(
+                      Icons.shopping_bag_outlined,
+                      color: Colors.white,
                     ),
-                    icon: const Icon(Icons.favorite_outline),
+                    icon: const Icon(
+                      Icons.shopping_bag_outlined,
+                    ),
                   ),
                 ),
                 //rating
                 Positioned(
-                  top: 50.h,
-                  left: 116.w,
+                  top: 191.h,
                   child: SizedBox(
-                    width: 110.w,
-                    height: 14.h,
+                    width: 125.w,
                     child: Row(
                       children: [
                         RatingBarIndicator(
@@ -290,8 +286,7 @@ class _ProductCardListViewState extends State<ProductCardListView> {
                 ),
                 //subtitle
                 Positioned(
-                  top: 29.81.h,
-                  left: 118.89.w,
+                  top: 211.h,
                   child: Text(
                     widget.product.subTitle,
                     style:
@@ -300,8 +295,7 @@ class _ProductCardListViewState extends State<ProductCardListView> {
                 ),
                 //Title
                 Positioned(
-                  top: 10.58.h,
-                  left: 118.98.w,
+                  top: 227.h,
                   child: Text(
                     widget.product.title,
                     style: headerStyle.copyWith(
@@ -311,9 +305,9 @@ class _ProductCardListViewState extends State<ProductCardListView> {
                   ),
                 ),
                 //Price
+                //TODO
                 Positioned(
-                  top: 69.23.h,
-                  left: 118.98.w,
+                  top: 246.h,
                   child: () {
                     if (widget.product.productStatus ==
                         ProductState.saleProduct) {

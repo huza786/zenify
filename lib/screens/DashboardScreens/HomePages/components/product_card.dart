@@ -184,39 +184,51 @@ class _ProductCardState extends State<ProductCard> {
                 Positioned(
                   top: 8.h,
                   left: 9.w,
-                  child: widget.product.newOrNot
-                      ? Container(
-                          height: 24.h,
-                          width: 40.w,
-                          decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(29)),
-                          child: Center(
-                            child: Text(
-                              'NEW',
-                              style: headerStyle.copyWith(
-                                  fontSize: 11,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        )
-                      : Container(
-                          height: 24.h,
-                          width: 40.w,
-                          decoration: BoxDecoration(
-                              color: primaryRed,
-                              borderRadius: BorderRadius.circular(29)),
-                          child: Center(
-                            child: Text(
-                              "-${salePercentage.roundToDouble().toInt().toString()}%",
-                              style: headerStyle.copyWith(
-                                  fontSize: 11,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
+                  child: () {
+                    if (widget.product.productStatus ==
+                        ProductState.newProduct) {
+                      return Container(
+                        height: 24.h,
+                        width: 40.w,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(29),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'NEW',
+                            style: headerStyle.copyWith(
+                              fontSize: 11,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
+                      );
+                    } else if (widget.product.productStatus ==
+                        ProductState.saleProduct) {
+                      return Container(
+                        height: 24.h,
+                        width: 40.w,
+                        decoration: BoxDecoration(
+                          color: primaryRed,
+                          borderRadius: BorderRadius.circular(29),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "-${salePercentage.roundToDouble().toInt().toString()}%",
+                            style: headerStyle.copyWith(
+                              fontSize: 11,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  }(),
                 ),
 
                 ///Favorite Button
@@ -291,36 +303,41 @@ class _ProductCardState extends State<ProductCard> {
                 //Price
                 Positioned(
                   top: 246.h,
-                  child: widget.product.newOrNot
-                      ? Text(
-                          '${widget.product.originalPrice}\$',
-                          style: headerStyle.copyWith(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600),
-                        )
-                      : Row(
-                          children: [
-                            Text(
-                              '${widget..product.originalPrice}\$',
-                              style: headerStyle.copyWith(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600,
-                                  decoration: TextDecoration.lineThrough),
-                            ),
-                            SizedBox(
-                              width: 2.w,
-                            ),
-                            Text(
-                              '\$${widget.product.salePrice}',
-                              style: headerStyle.copyWith(
-                                  fontSize: 16,
-                                  color: primaryRed,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
+                  child: () {
+                    if (widget.product.productStatus ==
+                        ProductState.saleProduct) {
+                      return Row(
+                        children: [
+                          Text(
+                            '${widget.product.originalPrice}\$',
+                            style: headerStyle.copyWith(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.lineThrough),
+                          ),
+                          SizedBox(
+                            width: 2.w,
+                          ),
+                          Text(
+                            '\$${widget.product.salePrice}',
+                            style: headerStyle.copyWith(
+                                fontSize: 16,
+                                color: primaryRed,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Text(
+                        '${widget.product.originalPrice}\$',
+                        style: headerStyle.copyWith(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
+                      );
+                    }
+                  }(),
                 ),
               ], //children
             ),

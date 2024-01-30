@@ -8,7 +8,7 @@ import 'package:zenify/screens/DashboardScreens/ShopPage/components/filter_compo
 import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
-class ProductCardListView extends StatefulWidget {
+class FavoriteCardListView extends StatefulWidget {
 //  final bool favoriteOrNot ;
 //  final bool newOrNot ;
 //  final String title ;
@@ -18,13 +18,13 @@ class ProductCardListView extends StatefulWidget {
 //  final String productImage;
 //  final double initRating ;
   final Product product;
-  const ProductCardListView({super.key, required this.product});
+  const FavoriteCardListView({super.key, required this.product});
 
   @override
-  State<ProductCardListView> createState() => _ProductCardListViewState();
+  State<FavoriteCardListView> createState() => _FavoriteCardListViewState();
 }
 
-class _ProductCardListViewState extends State<ProductCardListView> {
+class _FavoriteCardListViewState extends State<FavoriteCardListView> {
   @override
   void initState() {
     // TODO: implement initState
@@ -249,16 +249,18 @@ class _ProductCardListViewState extends State<ProductCardListView> {
                             MaterialStateProperty.all<Color>(Colors.black),
                         elevation: MaterialStateProperty.all<double>(2),
                         backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white)),
+                            MaterialStateProperty.all<Color>(primaryRed)),
                     onPressed: () {
-                      productCardState.favoriteFunction();
+                      //TODO: add to cart logic
                     },
-                    isSelected: widget.product.favoriteOrNot,
+                    // isSelected: widget.product.favoriteOrNot,
                     selectedIcon: Icon(
-                      Icons.favorite,
-                      color: primaryRed,
+                      Icons.shopping_bag_outlined,
+                      color: Colors.white,
                     ),
-                    icon: const Icon(Icons.favorite_outline),
+                    icon: const Icon(
+                      Icons.shopping_bag_outlined,
+                    ),
                   ),
                 ),
                 //rating
@@ -290,7 +292,7 @@ class _ProductCardListViewState extends State<ProductCardListView> {
                 ),
                 //subtitle
                 Positioned(
-                  top: 29.81.h,
+                  top: 15.h,
                   left: 118.89.w,
                   child: Text(
                     widget.product.subTitle,
@@ -300,7 +302,7 @@ class _ProductCardListViewState extends State<ProductCardListView> {
                 ),
                 //Title
                 Positioned(
-                  top: 10.58.h,
+                  top: 23.58.h,
                   left: 118.98.w,
                   child: Text(
                     widget.product.title,

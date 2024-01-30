@@ -131,7 +131,8 @@ class _HomeOneState extends State<HomeOne> {
                             // Access each product map in the list
                             Product currentProduct = productList[index];
                             return Visibility(
-                              visible: currentProduct.newOrNot,
+                              visible: currentProduct.productStatus ==
+                                  ProductState.newProduct,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8),
