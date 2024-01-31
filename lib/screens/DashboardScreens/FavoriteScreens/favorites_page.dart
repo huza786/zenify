@@ -90,7 +90,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       itemBuilder: (context, index) {
                         return TagWidget(
                           tagTitle: 'Title',
-                          //Add list of strings in product model and then add a another list of tags for here and then filtering the list based on it
+                          //TODO:Add list of strings in product model and then add a another list of tags for here and then filtering the list based on it
                         );
                       },
                     ),
@@ -193,7 +193,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
               Positioned.fill(
                 child: isLoading
                     ? const Center(
-                        child: const CircularProgressIndicator(),
+                        child: CircularProgressIndicator(),
                       )
                     : const SizedBox.shrink(),
               ),

@@ -58,6 +58,7 @@ class _FavoriteCardListViewState extends State<FavoriteCardListView> {
                 arguments: widget.product);
           },
           onLongPress: () {
+            //On long press bottom widget will appear and you can select size and order
             showModalBottomSheet(
                 context: context,
                 builder: (context) {
@@ -171,75 +172,220 @@ class _FavoriteCardListViewState extends State<FavoriteCardListView> {
                   );
                 });
           },
-          child: Container(
-            decoration: BoxDecoration(color: Colors.white),
-            // decoration: BoxDecoration(color: Colors.transparent),
-            height: 104.h,
-            width: 343.w,
+          child: SizedBox(
+            height: (104 + 12).h,
             child: Stack(
+              //Image
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(14),
-                  child: Image.asset(
-                    height: 104.h,
-                    width: 104.w,
-                    widget.product.productImage,
-                    fit: BoxFit.fill,
+                Container(
+                  decoration: BoxDecoration(color: Colors.white),
+                  // decoration: BoxDecoration(color: Colors.transparent),
+                  height: 104.h,
+                  width: 343.w,
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(14),
+                        child: Image.asset(
+                          height: 104.h,
+                          width: 104.w,
+                          widget.product.productImage,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Positioned(
+                        top: 8.h,
+                        left: 9.w,
+                        child: () {
+                          if (widget.product.productStatus ==
+                              ProductState.newProduct) {
+                            return Container(
+                              height: 24.h,
+                              width: 40.w,
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(29),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'NEW',
+                                  style: headerStyle.copyWith(
+                                    fontSize: 11,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else if (widget.product.productStatus ==
+                              ProductState.saleProduct) {
+                            return Container(
+                              height: 24.h,
+                              width: 40.w,
+                              decoration: BoxDecoration(
+                                color: primaryRed,
+                                borderRadius: BorderRadius.circular(29),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "-${salePercentage.roundToDouble().toInt().toString()}%",
+                                  style: headerStyle.copyWith(
+                                    fontSize: 11,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else {
+                            return const SizedBox.shrink();
+                          }
+                        }(),
+                      ),
+
+                      //rating
+                      Positioned(
+                        top: 76.h,
+                        left: 196.w,
+                        child: SizedBox(
+                          width: 100.w,
+                          height: 14.h,
+                          child: Row(
+                            children: [
+                              RatingBarIndicator(
+                                itemSize: 14,
+                                rating: productCardState.rating,
+                                itemBuilder: (context, index) => const Icon(
+                                  Icons.star_rounded,
+                                  color: Colors.amber,
+                                ),
+                                itemCount: 5,
+                                direction: Axis.horizontal,
+                              ), //rating in numbers next to rating
+                              Text(
+                                '(${widget.product.initRating})',
+                                style: headerStyle.copyWith(fontSize: 10),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //subtitle
+                      Positioned(
+                        top: 15.h,
+                        left: 116.w,
+                        child: Text(
+                          widget.product.subTitle,
+                          style: headerStyle.copyWith(
+                              fontSize: 11, color: Colors.grey),
+                        ),
+                      ),
+                      //Title
+                      Positioned(
+                        top: 29.h,
+                        left: 116.w,
+                        child: Text(
+                          widget.product.title,
+                          style: headerStyle.copyWith(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      //Price
+                      Positioned(
+                        top: 74.h,
+                        left: 118.98.w,
+                        child: () {
+                          if (widget.product.productStatus ==
+                              ProductState.saleProduct) {
+                            return Row(
+                              children: [
+                                Text(
+                                  '${widget.product.originalPrice.toInt()}\$',
+                                  style: headerStyle.copyWith(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600,
+                                      decoration: TextDecoration.lineThrough),
+                                ),
+                                SizedBox(
+                                  width: 2.w,
+                                ),
+                                Text(
+                                  '\$${widget.product.salePrice.toInt()}',
+                                  style: headerStyle.copyWith(
+                                      fontSize: 14,
+                                      color: primaryRed,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            );
+                          } else {
+                            return Text(
+                              '${widget.product.originalPrice.toInt()}\$',
+                              style: headerStyle.copyWith(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600),
+                            );
+                          }
+                        }(),
+                      ),
+                    ], //children
                   ),
                 ),
+                //Color Selected
                 Positioned(
-                  top: 8.h,
-                  left: 9.w,
-                  child: () {
-                    if (widget.product.productStatus ==
-                        ProductState.newProduct) {
-                      return Container(
-                        height: 24.h,
-                        width: 40.w,
-                        decoration: BoxDecoration(
+                  top: 51.h,
+                  left: 116.w,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Color: ',
+                        style: headerStyle.copyWith(
+                          fontSize: 11,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      Text(
+                        'Blue',
+                        style: headerStyle.copyWith(
+                          fontSize: 11,
                           color: Colors.black,
-                          borderRadius: BorderRadius.circular(29),
                         ),
-                        child: Center(
-                          child: Text(
-                            'NEW',
-                            style: headerStyle.copyWith(
-                              fontSize: 11,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                      ),
+                    ],
+                  ),
+                ),
+                //Size Selected
+                Positioned(
+                  top: 51.h,
+                  left: 198.w,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Size: ',
+                        style: headerStyle.copyWith(
+                          fontSize: 11,
+                          color: Colors.grey,
                         ),
-                      );
-                    } else if (widget.product.productStatus ==
-                        ProductState.saleProduct) {
-                      return Container(
-                        height: 24.h,
-                        width: 40.w,
-                        decoration: BoxDecoration(
-                          color: primaryRed,
-                          borderRadius: BorderRadius.circular(29),
+                      ),
+                      //TODO: add size property of favorite list
+                      Text(
+                        'L',
+                        style: headerStyle.copyWith(
+                          fontSize: 11,
+                          color: Colors.black,
                         ),
-                        child: Center(
-                          child: Text(
-                            "-${salePercentage.roundToDouble().toInt().toString()}%",
-                            style: headerStyle.copyWith(
-                              fontSize: 11,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      );
-                    } else {
-                      return const SizedBox.shrink();
-                    }
-                  }(),
+                      ),
+                    ],
+                  ),
                 ),
 
-                ///Favorite Button
+                ///Shopping Cart Button
                 Positioned(
-                  top: 69.23.h,
+                  top: 70.23.h,
                   left: 290.w,
                   child: IconButton(
                     style: ButtonStyle(
@@ -255,104 +401,16 @@ class _FavoriteCardListViewState extends State<FavoriteCardListView> {
                     },
                     // isSelected: widget.product.favoriteOrNot,
                     selectedIcon: Icon(
-                      Icons.shopping_bag_outlined,
+                      Icons.shopping_bag,
                       color: Colors.white,
                     ),
                     icon: const Icon(
-                      Icons.shopping_bag_outlined,
+                      Icons.shopping_bag,
+                      color: Colors.white,
                     ),
                   ),
                 ),
-                //rating
-                Positioned(
-                  top: 50.h,
-                  left: 116.w,
-                  child: SizedBox(
-                    width: 110.w,
-                    height: 14.h,
-                    child: Row(
-                      children: [
-                        RatingBarIndicator(
-                          itemSize: 16,
-                          rating: productCardState.rating,
-                          itemBuilder: (context, index) => const Icon(
-                            Icons.star_rounded,
-                            color: Colors.amber,
-                          ),
-                          itemCount: 5,
-                          direction: Axis.horizontal,
-                        ), //rating in numbers next to rating
-                        Text(
-                          '(${widget.product.initRating})',
-                          style: headerStyle.copyWith(fontSize: 10),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                //subtitle
-                Positioned(
-                  top: 15.h,
-                  left: 118.89.w,
-                  child: Text(
-                    widget.product.subTitle,
-                    style:
-                        headerStyle.copyWith(fontSize: 11, color: Colors.grey),
-                  ),
-                ),
-                //Title
-                Positioned(
-                  top: 23.58.h,
-                  left: 118.98.w,
-                  child: Text(
-                    widget.product.title,
-                    style: headerStyle.copyWith(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-                //Price
-                Positioned(
-                  top: 69.23.h,
-                  left: 118.98.w,
-                  child: () {
-                    if (widget.product.productStatus ==
-                        ProductState.saleProduct) {
-                      return Row(
-                        children: [
-                          Text(
-                            '${widget.product.originalPrice}\$',
-                            style: headerStyle.copyWith(
-                                fontSize: 16,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.lineThrough),
-                          ),
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          Text(
-                            '\$${widget.product.salePrice}',
-                            style: headerStyle.copyWith(
-                                fontSize: 16,
-                                color: primaryRed,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      );
-                    } else {
-                      return Text(
-                        '${widget.product.originalPrice}\$',
-                        style: headerStyle.copyWith(
-                            fontSize: 16,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600),
-                      );
-                    }
-                  }(),
-                ),
-              ], //children
+              ],
             ),
           ),
         ),
