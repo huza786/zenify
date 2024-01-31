@@ -53,6 +53,8 @@ class _FavoriteGridCardState extends State<FavoriteGridCard> {
                 arguments: widget.product);
           },
           onLongPress: () {
+            //On long press bottom widget will appear and you can select size and order
+
             showModalBottomSheet(
                 context: context,
                 builder: (context) {
@@ -232,7 +234,7 @@ class _FavoriteGridCardState extends State<FavoriteGridCard> {
                   }(),
                 ),
 
-                ///Favorite Button
+                ///Shopping cart Button
                 Positioned(
                   top: 155.h,
                   left: 105.w,
@@ -251,11 +253,12 @@ class _FavoriteGridCardState extends State<FavoriteGridCard> {
                     },
                     isSelected: widget.product.favoriteOrNot,
                     selectedIcon: const Icon(
-                      Icons.shopping_bag_outlined,
+                      Icons.shopping_bag,
                       color: Colors.white,
                     ),
                     icon: const Icon(
-                      Icons.shopping_bag_outlined,
+                      Icons.shopping_bag,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -263,11 +266,11 @@ class _FavoriteGridCardState extends State<FavoriteGridCard> {
                 Positioned(
                   top: 191.h,
                   child: SizedBox(
-                    width: 125.w,
+                    width: 100.w,
                     child: Row(
                       children: [
                         RatingBarIndicator(
-                          itemSize: 16,
+                          itemSize: 14,
                           rating: productCardState.rating,
                           itemBuilder: (context, index) => const Icon(
                             Icons.star_rounded,
@@ -286,7 +289,7 @@ class _FavoriteGridCardState extends State<FavoriteGridCard> {
                 ),
                 //subtitle
                 Positioned(
-                  top: 211.h,
+                  top: 213.h,
                   child: Text(
                     widget.product.subTitle,
                     style:
@@ -304,19 +307,64 @@ class _FavoriteGridCardState extends State<FavoriteGridCard> {
                         fontWeight: FontWeight.w600),
                   ),
                 ),
-                //Price
-                //TODO
                 Positioned(
-                  top: 246.h,
+                  top: 247.h,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Color: ',
+                        style: headerStyle.copyWith(
+                          fontSize: 11,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      Text(
+                        'Blue',
+                        style: headerStyle.copyWith(
+                          fontSize: 11,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                //Size Selected
+                Positioned(
+                  top: 247.h,
+                  left: 83.w,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Size: ',
+                        style: headerStyle.copyWith(
+                          fontSize: 11,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      //TODO: add size property of favorite list
+                      Text(
+                        'L',
+                        style: headerStyle.copyWith(
+                          fontSize: 11,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                //Price
+
+                Positioned(
+                  top: 262.h,
                   child: () {
                     if (widget.product.productStatus ==
                         ProductState.saleProduct) {
                       return Row(
                         children: [
                           Text(
-                            '${widget.product.originalPrice}\$',
+                            '${widget.product.originalPrice.toInt()}\$',
                             style: headerStyle.copyWith(
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600,
                                 decoration: TextDecoration.lineThrough),
@@ -325,9 +373,9 @@ class _FavoriteGridCardState extends State<FavoriteGridCard> {
                             width: 2.w,
                           ),
                           Text(
-                            '\$${widget.product.salePrice}',
+                            '\$${widget.product.salePrice.toInt()}',
                             style: headerStyle.copyWith(
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: primaryRed,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -335,9 +383,9 @@ class _FavoriteGridCardState extends State<FavoriteGridCard> {
                       );
                     } else {
                       return Text(
-                        '${widget.product.originalPrice}\$',
+                        '${widget.product.originalPrice.toInt()}\$',
                         style: headerStyle.copyWith(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: Colors.black,
                             fontWeight: FontWeight.w600),
                       );
