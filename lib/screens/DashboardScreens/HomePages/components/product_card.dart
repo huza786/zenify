@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:zenify/screens/DashboardScreens/FavoriteScreens/components/favorite_model.dart';
+import 'package:zenify/screens/DashboardScreens/HomePages/components/custom_bottom_sheet.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card_providers.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/filter_components_providers.dart';
@@ -54,117 +56,121 @@ class _ProductCardState extends State<ProductCard> {
           },
           onLongPress: () {
             showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(34),
-                        topRight: Radius.circular(34)),
-                    child: Container(
-                      height: 368.h,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(color: Colors.white),
-                      child: SafeArea(
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Select Size',
-                                style: headerStyle.copyWith(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w600),
-                              ),
+              context: context,
+              builder: (context) {
+                return ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(34),
+                      topRight: Radius.circular(34)),
+                  child: Container(
+                    height: 368.h,
+                    width: double.infinity,
+                    decoration: const BoxDecoration(color: Colors.white),
+                    child: SafeArea(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Select Size',
+                              style: headerStyle.copyWith(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600),
                             ),
-                            //Sizes Selection
-                            Wrap(
-                              children: Sizes.map(
-                                (e) {
-                                  return Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 11.w, vertical: 8.h),
-                                    child: Container(
-                                      height: 40.h,
-                                      width: 100.w,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          border:
-                                              Border.all(color: Colors.grey),
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      child: Center(
-                                        child: Text(e,
-                                            style: headerStyle.copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 14,
-                                                color: Colors.black)),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).toList(),
-                            ),
-                            const Divider(),
-                            //Adding a size info widgit
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    'Size Info',
-                                    style: headerStyle,
-                                  ),
-                                  IconButton(
-                                    onPressed: () {
-                                      //TODO:add size info
-                                    },
-                                    icon: const Icon(
-                                      Icons.arrow_forward_ios_rounded,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Divider(),
-                            GestureDetector(
-                              onTap: () {
-                                //TODO add ADDTO cart logic
-                                Navigator.pop(context);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Material(
-                                  borderRadius: BorderRadius.circular(36),
-                                  shadowColor: Colors.grey,
-                                  elevation: 4,
+                          ),
+                          //Sizes Selection
+                          Wrap(
+                            children: Sizes.map(
+                              (e) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 11.w, vertical: 8.h),
                                   child: Container(
-                                    width: double.infinity,
-                                    height: 48.h,
+                                    height: 40.h,
+                                    width: 100.w,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(36),
-                                        color: primaryRed),
+                                        color: Colors.white,
+                                        border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8)),
                                     child: Center(
-                                      child: Text(
-                                        'Add To Cart',
-                                        style: headerStyle.copyWith(
-                                            color: Colors.white),
+                                      child: Text(e,
+                                          style: headerStyle.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14,
+                                              color: Colors.black)),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ).toList(),
+                          ),
+                          const Divider(),
+                          //Adding a size info widgit
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Size Info',
+                                  style: headerStyle,
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    //TODO:add size info
+                                  },
+                                  icon: const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Divider(),
+                          GestureDetector(
+                            onTap: () {
+                              //TODO add ADDTO cart logic
+                              Navigator.pop(context);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(
+                                8.0,
+                              ),
+                              child: Material(
+                                borderRadius: BorderRadius.circular(36),
+                                shadowColor: Colors.grey,
+                                elevation: 4,
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 48.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      36,
+                                    ),
+                                    color: primaryRed,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Add To Cart',
+                                      style: headerStyle.copyWith(
+                                        color: Colors.white,
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                });
+                  ),
+                );
+              },
+            );
           },
           child: SizedBox(
             // decoration: BoxDecoration(color: Colors.transparent),
@@ -246,6 +252,15 @@ class _ProductCardState extends State<ProductCard> {
                             MaterialStateProperty.all<Color>(Colors.white)),
                     onPressed: () {
                       productCardState.favoriteFunction();
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) {
+                          return CustomBottomSheet(
+                            productModel: widget.product,
+                          );
+                        },
+                      );
                     },
                     isSelected: widget.product.favoriteOrNot,
                     selectedIcon: Icon(

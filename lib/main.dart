@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:zenify/firebase_options.dart';
 import 'package:zenify/screens/AuthenticationScreens/providers/email_validation_provider.dart';
+import 'package:zenify/screens/DashboardScreens/FavoriteScreens/provider/favorite_provider.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/expandable_model_and_provider.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card_providers.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/filter_components_providers.dart';
@@ -51,6 +52,10 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (context) => ExpandedCardProvider(),
+          ),
+          //provider for favorite page
+          ChangeNotifierProvider(
+            create: (context) => FavoriteListState(),
           ),
         ],
         child: MaterialApp(

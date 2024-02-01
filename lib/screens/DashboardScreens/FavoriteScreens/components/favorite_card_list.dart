@@ -193,6 +193,20 @@ class _FavoriteCardListViewState extends State<FavoriteCardListView> {
                           fit: BoxFit.fill,
                         ),
                       ),
+                      //remove widget from favorite list
+                      Positioned(
+                        top: 4,
+                        left: 313.w,
+                        child: GestureDetector(
+                          onTap: () {
+                            //TODO: remove favorite  from list
+                          },
+                          child: const Icon(
+                            Icons.close_rounded,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
                       Positioned(
                         top: 8.h,
                         left: 9.w,

@@ -183,6 +183,20 @@ class _FavoriteGridCardState extends State<FavoriteGridCard> {
                     fit: BoxFit.fill,
                   ),
                 ),
+                //remove widget from favorite list
+                Positioned(
+                  top: 4,
+                  left: 120.w,
+                  child: GestureDetector(
+                    onTap: () {
+                      //TODO: remove favorite  from list
+                    },
+                    child: const Icon(
+                      Icons.close_rounded,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
                 //TODO:NewORSALE WIDGET
                 Positioned(
                   top: 8.h,

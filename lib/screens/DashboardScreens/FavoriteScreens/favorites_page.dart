@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:zenify/screens/DashboardScreens/FavoriteScreens/components/favorite_card_grid.dart';
 import 'package:zenify/screens/DashboardScreens/FavoriteScreens/components/favorite_card_list.dart';
-import 'package:zenify/screens/DashboardScreens/HomePages/components/product_card.dart';
+import 'package:zenify/screens/DashboardScreens/FavoriteScreens/provider/favorite_provider.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/bottom_sheet.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/custom_app_bar.dart';
-import 'package:zenify/screens/DashboardScreens/ShopPage/components/product_card_list_view.dart';
 import 'package:zenify/screens/DashboardScreens/ShopPage/components/tag_widget.dart';
 import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
@@ -28,6 +28,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final favoriteProv = Provider.of<FavoriteListState>(context);
     return Scaffold(
       appBar: CustomAppBar(
         duration: const Duration(milliseconds: 500),
@@ -202,7 +203,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                   //Gridview of products
                   GridView.builder(
                       padding: EdgeInsets.all(8.w),
-                      itemCount: productList.length,
+                      itemCount: favoriteProv.favoriteList.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         childAspectRatio: .6,
@@ -212,7 +213,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       ),
                       itemBuilder: (context, index) {
                         // Access each product map in the list
-                        Product currentProduct = productList[index];
+                        Product currentProduct =
+                            favoriteProv.favoriteList[index].product;
+
                         return Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.w),
                           child: FavoriteGridCard(
@@ -224,7 +227,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                   //ListView of products
                   : GridView.builder(
                       padding: EdgeInsets.all(8.w),
-                      itemCount: productList.length,
+                      itemCount: favoriteProv.favoriteList.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         childAspectRatio: 3.1,
@@ -234,7 +237,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       ),
                       itemBuilder: (context, index) {
                         // Access each product map in the list
-                        Product currentProduct = productList[index];
+                        Product currentProduct =
+                            favoriteProv.favoriteList[index].product;
                         return Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.w),
                           child: FavoriteCardListView(

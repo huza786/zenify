@@ -27,4 +27,18 @@ class ProductCardState with ChangeNotifier {
     _rating = newRating;
     notifyListeners();
   }
+
+  int _toggleSizeSelected = -1;
+  get toggleSizeSelected => _toggleSizeSelected;
+  void selectSizeToggleItem(int value) {
+    _toggleSizeSelected = value;
+    notifyListeners();
+  }
+
+  int _toggleColorSelected = -1;
+  get toggleColorSelected => _toggleColorSelected;
+  void selectColorToggleItem(int value) {
+    _toggleColorSelected = value;
+    notifyListeners();
+  }
 }

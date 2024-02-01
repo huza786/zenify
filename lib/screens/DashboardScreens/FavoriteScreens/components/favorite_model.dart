@@ -2,8 +2,8 @@ import 'package:zenify/screens/DashboardScreens/HomePages/components/product_mod
 
 class FavoriteModel {
   Product product;
-  String color;
-  String size;
+  String color = '';
+  String size = '';
 
   FavoriteModel({
     required this.product,

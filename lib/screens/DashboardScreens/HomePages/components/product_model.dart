@@ -3,16 +3,17 @@ import 'package:zenify/screens/DashboardScreens/HomePages/components/review_mode
 enum ProductState { newProduct, saleProduct, nullProduct, outOfStock }
 
 class Product {
-  String productImage;
-  String title;
-  String subTitle;
-  double originalPrice;
-  double salePrice;
-  bool favoriteOrNot;
-  ProductState productStatus; // Change type to ProductState
-  double initRating;
-  String companyName;
-  String description;
+  String productImage = '';
+  String title = '';
+  String subTitle = '';
+  double originalPrice = 0;
+  double salePrice = 0;
+  bool favoriteOrNot = false;
+  ProductState productStatus =
+      ProductState.nullProduct; // Change type to ProductState
+  double initRating = 0;
+  String companyName = '';
+  String description = '';
   List<Review> reviews;
 
   Product({

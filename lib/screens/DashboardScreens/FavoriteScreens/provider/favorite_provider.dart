@@ -4,10 +4,16 @@ import 'package:zenify/screens/DashboardScreens/HomePages/components/product_mod
 
 class FavoriteListState with ChangeNotifier {
   List<FavoriteModel> favoriteList = [];
+
   //TODO: add a function to save all favorite items to this list
-  void addToFavoriteList(Product product, FavoriteModel favoriteProduct) {
-    favoriteProduct.product = product;
+  void addToFavoriteList(Product product, String color, String size) {
+    FavoriteModel favoriteProduct = FavoriteModel(
+      product: product,
+      color: color,
+      size: size,
+    );
     favoriteList.add(favoriteProduct);
+    print(favoriteList[0].toString());
     // notifyListeners();
   }
 }

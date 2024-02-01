@@ -4,7 +4,6 @@ import 'package:zenify/screens/DashboardScreens/HomePages/components/product_car
 import 'package:zenify/screens/DashboardScreens/HomePages/components/product_model.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/home2.dart';
 import 'package:zenify/screens/DashboardScreens/HomePages/home3.dart';
-import 'package:zenify/utils/app_routes.dart';
 import 'package:zenify/utils/globalvariable.dart';
 
 class HomeOne extends StatefulWidget {

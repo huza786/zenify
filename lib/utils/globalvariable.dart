@@ -78,6 +78,8 @@ List<CategoryModel> categoriesList = [
   favoriteOrNot: false,
   newOrNot: false,
 ) */
+List colorsList = ['White', 'Brown', 'Green', 'Black', 'Red'];
+
 List<Review> ReviewList = List.generate(
   8,
   (index) => Review(
